@@ -3,854 +3,483 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한화 뉴스 데일리 브리핑</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f4f4f7;
+      color: #1a1a2e;
+      min-height: 100vh;
+    }
+
+    /* ── 헤더 ── */
+    .header {
+      background: linear-gradient(135deg, #FF6600, #FF8533);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .header-title {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .date-label {
+      color: rgba(255,255,255,0.85);
+      font-size: 13px;
+    }
+    .date-select {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='white' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 28px;
+    }
+    .date-select option { background: #FF6600; color: #fff; }
+
+    /* ── 레이아웃 ── */
+    .layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 0 16px;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    /* ── 사이드바 ── */
+    .sidebar {
+      width: 200px;
+      flex-shrink: 0;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      overflow: hidden;
+      position: sticky;
+      top: 80px;
+    }
+    .sidebar-title {
+      background: #f8f8fa;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #888;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #eee;
+    }
+    .sidebar-item {
+      display: block;
+      width: 100%;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: #444;
+      cursor: pointer;
+      border: none;
+      background: none;
+      text-align: left;
+      border-bottom: 1px solid #f4f4f7;
+      transition: background 0.15s;
+      position: relative;
+    }
+    .sidebar-item:hover { background: #fff5ee; color: #FF6600; }
+    .sidebar-item.active {
+      background: #FF6600;
+      color: #fff;
+      font-weight: 600;
+    }
+    .sidebar-item .count {
+      float: right;
+      font-size: 11px;
+      opacity: 0.7;
+      background: rgba(0,0,0,0.08);
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+    .sidebar-item.active .count {
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* ── 메인 콘텐츠 ── */
+    .main {
+      flex: 1;
+      min-width: 0;
+    }
+    .meta-bar {
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .article-count-badge {
+      background: #FF6600;
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* ── 기사 카드 ── */
+    .article-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      transition: box-shadow 0.2s;
+    }
+    .article-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+    .article-card.hidden { display: none; }
+
+    .article-header { display: flex; gap: 14px; align-items: flex-start; }
+    .article-num {
+      background: #FF6600;
+      color: #fff;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .article-body { flex: 1; min-width: 0; }
+    .article-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a2e;
+      text-decoration: none;
+      line-height: 1.5;
+      display: block;
+    }
+    .article-title:hover { color: #FF6600; }
+    .article-meta {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #888;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .press-badge {
+      background: #FF6600;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .sub-badge {
+      background: #f0f0f5;
+      color: #666;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+    }
+    .summary-box {
+      margin-top: 12px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      border-left: 3px solid #FF6600;
+      padding: 12px 14px;
+    }
+    .summary-line {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.6;
+      margin-top: 5px;
+    }
+    .summary-line:first-child { margin-top: 0; }
+    .summary-num {
+      color: #FF6600;
+      font-weight: 700;
+      margin-right: 4px;
+    }
+    .article-link {
+      display: inline-block;
+      margin-top: 12px;
+      background: #FF6600;
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .article-link:hover { background: #e55a00; }
+
+    /* ── 빈 상태 / 로딩 ── */
+    .state-box {
+      text-align: center;
+      padding: 60px 20px;
+      color: #aaa;
+      font-size: 14px;
+      background: #fff;
+      border-radius: 10px;
+    }
+    .state-box .icon { font-size: 36px; margin-bottom: 12px; }
+
+    /* ── 푸터 ── */
+    .footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 11px;
+      color: #bbb;
+    }
+
+    /* ── 반응형 ── */
+    @media (max-width: 640px) {
+      .layout { flex-direction: column; }
+      .sidebar { width: 100%; position: static; }
+      .header { padding: 14px 16px; }
+    }
+  </style>
 </head>
-<body style="margin:0; padding:0; background-color:#f4f4f7;
-             font-family:-apple-system,BlinkMacSystemFont,
-             'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+<body>
 
-  <!-- 외부 컨테이너 -->
-  <table width="100%" cellpadding="0" cellspacing="0"
-         style="background-color:#f4f4f7; padding:20px 0;">
-    <tr>
-      <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0"
-               style="background:#ffffff; border-radius:8px;
-                      overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+  <!-- 헤더 -->
+  <div class="header">
+    <div class="header-title">한화 뉴스 데일리 브리핑</div>
+    <div class="header-right">
+      <span class="date-label">날짜 선택</span>
+      <select class="date-select" id="dateSelect" onchange="loadDate(this.value)">
+        <option value="">불러오는 중...</option>
+      </select>
+    </div>
+  </div>
 
-          <!-- 헤더 -->
-          <tr>
-            <td style="background:linear-gradient(135deg,#FF6600,#FF8533);
-                       padding:30px 40px; text-align:center;">
-              <h1 style="color:#ffffff; margin:0; font-size:24px;
-                         font-weight:700; letter-spacing:-0.5px;">
-                한화 뉴스 데일리 브리핑
-              </h1>
-              <p style="color:rgba(255,255,255,0.9); margin:8px 0 0;
-                        font-size:14px;">
-                2026년 03월 04일 | TOP 10
-              </p>
-            </td>
-          </tr>
+  <!-- 레이아웃 -->
+  <div class="layout">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="sidebar-title">계열사 필터</div>
+      <div id="sidebarList">
+        <button class="sidebar-item active" onclick="filterBy('전체')">
+          전체 <span class="count" id="count-전체">0</span>
+        </button>
+      </div>
+    </div>
 
-          <!-- 기사 리스트 -->
-          <tr>
-            <td style="padding:24px 40px;">
-              
-                
-                <table width="100%" cellpadding="0" cellspacing="0"
-                       style="border-bottom:1px solid #eee;
-                              padding-bottom:20px; margin-bottom:20px;">
-                  <tr>
-                    <td style="vertical-align:top; width:32px; padding-top:2px;">
-                      <!-- 번호 배지 -->
-                      <span style="display:inline-block; background:#FF6600;
-                                   color:#fff; border-radius:50%;
-                                   width:28px; height:28px; line-height:28px;
-                                   text-align:center; font-size:13px;
-                                   font-weight:bold;">
-                        1
-                      </span>
-                    </td>
-                    <td style="padding-left:12px;">
-                      <!-- 제목 (클릭 시 기사로 이동) -->
-                      <a href="http://www.newsbrite.net/news/articleView.html?idxno=196737"
-                         style="color:#1a1a2e; font-size:16px;
-                                font-weight:700; text-decoration:none;
-                                line-height:1.5; display:block;"
-                         target="_blank">
-                        한화운용 &#34;PLUS ETF, 10조 넘어 100조 운용사로 도약&#34;
-                      </a>
+    <!-- 메인 -->
+    <div class="main">
+      <div class="meta-bar">
+        <span id="metaText">날짜를 선택하세요</span>
+        <span class="article-count-badge" id="visibleCount" style="display:none"></span>
+      </div>
+      <div id="articleList">
+        <div class="state-box">
+          <div class="icon">📰</div>
+          날짜를 선택하면 뉴스가 표시됩니다.
+        </div>
+      </div>
+    </div>
+  </div>
 
-                      <!-- 메타: 언론사 + 날짜 -->
-                      <p style="margin:6px 0 0; font-size:12px; color:#888;">
-                        
-                        03/04 20:18
-                      </p>
+  <div class="footer" id="footer"></div>
 
-                      <!-- 핵심 3줄 요약 -->
-                      
-                      <table width="100%" cellpadding="0" cellspacing="0"
-                             style="margin:10px 0 0; background:#f8f9fa;
-                                    border-radius:6px; border-left:3px solid #FF6600;">
-                        <tr>
-                          <td style="padding:12px 14px;">
-                            
-                            <p style="margin:0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">1.</span>
-                              한화운용 &#34;PLUS ETF, 10조 넘어 100조 운용사로 도약&#34;
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">2.</span>
-                              브랜드 출범 당시 3조대 중반 수준이던 순자산은 1년7개월 만에 약 3배 가량 성장하는 성과를 거뒀다.
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">3.</span>
-                              관련해 최영진 부사장은 &#34;3년 후에 순자산 100조에 업계 &#39;톱3&#39; ETF 운용사로 발돋움하겠다&#34;며 &#34;미국에 &#39;K방산 ETF&#39;를 안착시킨 기세를 모아 미국, 유럽, 아부다비, 싱가포르, 홍콩 등으로 영토를 확장하겠다&#34;고 밝혔다.
-                            </p>
-                            
-                          </td>
-                        </tr>
-                      </table>
-                      
+  <script>
+    let allArticles = [];
+    let currentFilter = '전체';
 
-                      <!-- 기사 보기 버튼 -->
-                      <p style="margin:10px 0 0;">
-                        <a href="http://www.newsbrite.net/news/articleView.html?idxno=196737"
-                           style="display:inline-block; background:#FF6600;
-                                  color:#ffffff; padding:6px 16px;
-                                  border-radius:4px; font-size:12px;
-                                  font-weight:600; text-decoration:none;"
-                           target="_blank">
-                          기사 원문 보기 &rarr;
-                        </a>
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-                
-                <table width="100%" cellpadding="0" cellspacing="0"
-                       style="border-bottom:1px solid #eee;
-                              padding-bottom:20px; margin-bottom:20px;">
-                  <tr>
-                    <td style="vertical-align:top; width:32px; padding-top:2px;">
-                      <!-- 번호 배지 -->
-                      <span style="display:inline-block; background:#FF6600;
-                                   color:#fff; border-radius:50%;
-                                   width:28px; height:28px; line-height:28px;
-                                   text-align:center; font-size:13px;
-                                   font-weight:bold;">
-                        2
-                      </span>
-                    </td>
-                    <td style="padding-left:12px;">
-                      <!-- 제목 (클릭 시 기사로 이동) -->
-                      <a href="http://www.segyebiz.com/newsView/20260304519139?OutUrl=naver"
-                         style="color:#1a1a2e; font-size:16px;
-                                font-weight:700; text-decoration:none;
-                                line-height:1.5; display:block;"
-                         target="_blank">
-                        [기고] AI 에이전트 시대의 통화, 스테이블 코인의
-                      </a>
+    // 날짜 목록 로드
+    async function loadDates() {
+      try {
+        const res = await fetch('data/dates.json');
+        if (!res.ok) throw new Error('dates.json 없음');
+        const dates = await res.json();
 
-                      <!-- 메타: 언론사 + 날짜 -->
-                      <p style="margin:6px 0 0; font-size:12px; color:#888;">
-                        
-                        03/04 18:36
-                      </p>
+        const sel = document.getElementById('dateSelect');
+        sel.innerHTML = '';
+        dates.forEach((d, i) => {
+          const opt = document.createElement('option');
+          opt.value = d;
+          opt.textContent = formatDateLabel(d);
+          if (i === 0) opt.selected = true;
+          sel.appendChild(opt);
+        });
 
-                      <!-- 핵심 3줄 요약 -->
-                      
-                      <table width="100%" cellpadding="0" cellspacing="0"
-                             style="margin:10px 0 0; background:#f8f9fa;
-                                    border-radius:6px; border-left:3px solid #FF6600;">
-                        <tr>
-                          <td style="padding:12px 14px;">
-                            
-                            <p style="margin:0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">1.</span>
-                              김종호 한화자산운용 대표가 4일 여의도 한국거래소 컨퍼런스홀에서 열린 PLUS ETF 순자산총액 10조원 돌파 기념 기자간담회에서 발언하고 있다
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">2.</span>
-                              김종호 한화자산운용 대표가 3년 이내 순자산총액 100조원을 달성하고 업계 톱3로 도약하겠다는 목표를 제시했다.
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">3.</span>
-                              브랜드 출범 당시 3조원대 중반 수준이던 순자산은 약 1년 7개월 만에 약 3배 가량 성장했다
-                            </p>
-                            
-                          </td>
-                        </tr>
-                      </table>
-                      
+        if (dates.length > 0) loadDate(dates[0]);
+      } catch (e) {
+        document.getElementById('articleList').innerHTML =
+          '<div class="state-box"><div class="icon">⚠️</div>데이터를 불러올 수 없습니다.<br><small>' + e.message + '</small></div>';
+      }
+    }
 
-                      <!-- 기사 보기 버튼 -->
-                      <p style="margin:10px 0 0;">
-                        <a href="http://www.segyebiz.com/newsView/20260304519139?OutUrl=naver"
-                           style="display:inline-block; background:#FF6600;
-                                  color:#ffffff; padding:6px 16px;
-                                  border-radius:4px; font-size:12px;
-                                  font-weight:600; text-decoration:none;"
-                           target="_blank">
-                          기사 원문 보기 &rarr;
-                        </a>
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-                
-                <table width="100%" cellpadding="0" cellspacing="0"
-                       style="border-bottom:1px solid #eee;
-                              padding-bottom:20px; margin-bottom:20px;">
-                  <tr>
-                    <td style="vertical-align:top; width:32px; padding-top:2px;">
-                      <!-- 번호 배지 -->
-                      <span style="display:inline-block; background:#FF6600;
-                                   color:#fff; border-radius:50%;
-                                   width:28px; height:28px; line-height:28px;
-                                   text-align:center; font-size:13px;
-                                   font-weight:bold;">
-                        3
-                      </span>
-                    </td>
-                    <td style="padding-left:12px;">
-                      <!-- 제목 (클릭 시 기사로 이동) -->
-                      <a href="http://www.fnnews.com/news/202603041831099899"
-                         style="color:#1a1a2e; font-size:16px;
-                                font-weight:700; text-decoration:none;
-                                line-height:1.5; display:block;"
-                         target="_blank">
-                        한화운용, 3년 내 ETF 순자산 100조 목표… &#34;해외로 영토 확장&#34;
-                      </a>
+    // 특정 날짜 데이터 로드
+    async function loadDate(dateStr) {
+      if (!dateStr) return;
+      document.getElementById('articleList').innerHTML =
+        '<div class="state-box"><div class="icon">⏳</div>불러오는 중...</div>';
+      currentFilter = '전체';
 
-                      <!-- 메타: 언론사 + 날짜 -->
-                      <p style="margin:6px 0 0; font-size:12px; color:#888;">
-                        
-                          <span style="background:#FF6600; color:#fff;
-                                       padding:2px 8px; border-radius:3px;
-                                       margin-right:6px; font-size:11px;
-                                       font-weight:600;">
-                            파이낸셜뉴스
-                          </span>
-                        
-                        03/04 18:32
-                      </p>
+      try {
+        const res = await fetch('data/' + dateStr + '.json');
+        if (!res.ok) throw new Error(dateStr + '.json 없음');
+        const data = await res.json();
 
-                      <!-- 핵심 3줄 요약 -->
-                      
-                      <table width="100%" cellpadding="0" cellspacing="0"
-                             style="margin:10px 0 0; background:#f8f9fa;
-                                    border-radius:6px; border-left:3px solid #FF6600;">
-                        <tr>
-                          <td style="padding:12px 14px;">
-                            
-                            <p style="margin:0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">1.</span>
-                              4일 서울 여의도 한국거래소 컨퍼런스홀에서 &#39;PLUS ETF 순자산 10조원 돌파 기념&#39; 기자간담회가 진행되고 있다
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">2.</span>
-                              한화자산운용이 상장지수펀드(ETF) 순자산 규모를 100조원대까지 성장시키며 &#39;톱3&#39; 운용사로 도약하겠다는 목표를 내세웠다
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">3.</span>
-                              최영진 한화자산운용 부사장(최고마케팅책임자·CMO)은 4일 서울 여의도 한국거래소 컨퍼런스홀에서 열린 &#39;PLUS ETF 순자산 10조원 돌파 기념&#39; 기자간담회에서 &#34;3년 뒤 PLUS ETF 순자산 100조원, 업계 &#39;톱3&#39; ETF 운용사로 발돋움하겠다&#34;고 강조했다
-                            </p>
-                            
-                          </td>
-                        </tr>
-                      </table>
-                      
+        allArticles = data.articles || [];
+        buildSidebar(allArticles, data.subsidiaries || []);
+        renderArticles('전체');
+        document.getElementById('metaText').textContent =
+          formatDateLabel(dateStr) + ' | 생성: ' + (data.generated_at || '');
+        document.getElementById('footer').textContent =
+          '자동 생성 | ' + (data.generated_at || '') + ' | hanwha-news-crawler';
+      } catch (e) {
+        document.getElementById('articleList').innerHTML =
+          '<div class="state-box"><div class="icon">⚠️</div>데이터를 불러올 수 없습니다.<br><small>' + e.message + '</small></div>';
+      }
+    }
 
-                      <!-- 기사 보기 버튼 -->
-                      <p style="margin:10px 0 0;">
-                        <a href="http://www.fnnews.com/news/202603041831099899"
-                           style="display:inline-block; background:#FF6600;
-                                  color:#ffffff; padding:6px 16px;
-                                  border-radius:4px; font-size:12px;
-                                  font-weight:600; text-decoration:none;"
-                           target="_blank">
-                          기사 원문 보기 &rarr;
-                        </a>
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-                
-                <table width="100%" cellpadding="0" cellspacing="0"
-                       style="border-bottom:1px solid #eee;
-                              padding-bottom:20px; margin-bottom:20px;">
-                  <tr>
-                    <td style="vertical-align:top; width:32px; padding-top:2px;">
-                      <!-- 번호 배지 -->
-                      <span style="display:inline-block; background:#FF6600;
-                                   color:#fff; border-radius:50%;
-                                   width:28px; height:28px; line-height:28px;
-                                   text-align:center; font-size:13px;
-                                   font-weight:bold;">
-                        4
-                      </span>
-                    </td>
-                    <td style="padding-left:12px;">
-                      <!-- 제목 (클릭 시 기사로 이동) -->
-                      <a href="https://magazine.hankyung.com/business/article/202603049548b"
-                         style="color:#1a1a2e; font-size:16px;
-                                font-weight:700; text-decoration:none;
-                                line-height:1.5; display:block;"
-                         target="_blank">
-                        與, 삼성·SK·현대차·LG·한화·GS 만나 중동 정세·대미관세 의견 듣는다
-                      </a>
+    // 사이드바 생성
+    function buildSidebar(articles, subsidiaries) {
+      const counts = {};
+      articles.forEach(a => {
+        const s = a.subsidiary || '기타';
+        counts[s] = (counts[s] || 0) + 1;
+      });
 
-                      <!-- 메타: 언론사 + 날짜 -->
-                      <p style="margin:6px 0 0; font-size:12px; color:#888;">
-                        
-                          <span style="background:#FF6600; color:#fff;
-                                       padding:2px 8px; border-radius:3px;
-                                       margin-right:6px; font-size:11px;
-                                       font-weight:600;">
-                            한경비즈니스
-                          </span>
-                        
-                        03/04 20:31
-                      </p>
+      // 계열사 순서: config의 subsidiaries 순서 유지 (JSON에 포함된 순서 사용)
+      const orderedSubs = subsidiaries.filter(s => counts[s]);
 
-                      <!-- 핵심 3줄 요약 -->
-                      
-                      <table width="100%" cellpadding="0" cellspacing="0"
-                             style="margin:10px 0 0; background:#f8f9fa;
-                                    border-radius:6px; border-left:3px solid #FF6600;">
-                        <tr>
-                          <td style="padding:12px 14px;">
-                            
-                            <p style="margin:0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">1.</span>
-                              미국·이스라엘과 이란 간 전쟁으로 국제 경제 상황이 혼란스러운 모습을 보이는 가운데 더불어민주당이 5일 재계와 현안 간담회를 연다고 4일 밝혔다.
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">2.</span>
-                              국회 외교통일위·산업통상자원중소벤처기업위·재정경제기획위 소속 민주당 의원들은 간담회에서 미국 및 이스라엘의 이란 공습 이후 중동 정세, 대미 관세 협상 등과 관련한 업계 민원을 청취한다.
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">3.</span>
-                              이와 관련, 민주당 박수현 수석대변인은 논평을 내고 &#34;중동 지역 정세 불안으로 직접적인 영향을 받을 수 있는 수출입 기업을 위한 긴급 금융·물류 지원 대책도 마련해 우리 산업을 지키는 데 만전을 기하고 있다&#34;며 &#34;대한민국의 안보와 국민경제 안정을 위해 각별한 긴장감과 위기감으로 상황을 관리해 나가겠다&#34;고 말했다.
-                            </p>
-                            
-                          </td>
-                        </tr>
-                      </table>
-                      
+      const list = document.getElementById('sidebarList');
+      list.innerHTML = '';
 
-                      <!-- 기사 보기 버튼 -->
-                      <p style="margin:10px 0 0;">
-                        <a href="https://magazine.hankyung.com/business/article/202603049548b"
-                           style="display:inline-block; background:#FF6600;
-                                  color:#ffffff; padding:6px 16px;
-                                  border-radius:4px; font-size:12px;
-                                  font-weight:600; text-decoration:none;"
-                           target="_blank">
-                          기사 원문 보기 &rarr;
-                        </a>
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-                
-                <table width="100%" cellpadding="0" cellspacing="0"
-                       style="border-bottom:1px solid #eee;
-                              padding-bottom:20px; margin-bottom:20px;">
-                  <tr>
-                    <td style="vertical-align:top; width:32px; padding-top:2px;">
-                      <!-- 번호 배지 -->
-                      <span style="display:inline-block; background:#FF6600;
-                                   color:#fff; border-radius:50%;
-                                   width:28px; height:28px; line-height:28px;
-                                   text-align:center; font-size:13px;
-                                   font-weight:bold;">
-                        5
-                      </span>
-                    </td>
-                    <td style="padding-left:12px;">
-                      <!-- 제목 (클릭 시 기사로 이동) -->
-                      <a href="http://www.paxetv.com/news/articleView.html?idxno=263900"
-                         style="color:#1a1a2e; font-size:16px;
-                                font-weight:700; text-decoration:none;
-                                line-height:1.5; display:block;"
-                         target="_blank">
-                        [이슈] 한화자산운용 &#34;PLUS ETF, 3년 뒤 100조원 목표&#34;…액티브 승부수·...
-                      </a>
+      // 전체 버튼
+      addSidebarItem(list, '전체', articles.length, true);
 
-                      <!-- 메타: 언론사 + 날짜 -->
-                      <p style="margin:6px 0 0; font-size:12px; color:#888;">
-                        
-                        03/04 17:48
-                      </p>
+      // 계열사별
+      orderedSubs.forEach(sub => {
+        addSidebarItem(list, sub, counts[sub], false);
+      });
 
-                      <!-- 핵심 3줄 요약 -->
-                      
-                      <table width="100%" cellpadding="0" cellspacing="0"
-                             style="margin:10px 0 0; background:#f8f9fa;
-                                    border-radius:6px; border-left:3px solid #FF6600;">
-                        <tr>
-                          <td style="padding:12px 14px;">
-                            
-                            <p style="margin:0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">1.</span>
-                              4일 여의도 한국거래소에서 열린 &#39;PLUS ETF 순자산총액 10조원 돌파 기념 기자간담회&#39;에서 질의응답을 하고 있다.
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">2.</span>
-                              한화자산운용이 플러스 상장지수펀드(PLUS ETF) 순자산 10조원 돌파를 계기로 3년 뒤 100조원을 달성하겠다는 목표로 제시했다
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">3.</span>
-                              김종호 한화자산운용 대표는 4일 여의도 한국거래소에서 열린 &#39;PLUS ETF 순자산총액 10조원 돌파 기념 기자간담회&#39;에서 &#34;국내 ETF 시장 규모는 300조원을 넘어 400조원을 바라보고 있다&#34;며 &#34;PLUS ETF가 글로벌 시장에서도 통할 수 있는 경쟁력을 갖춰 다가오는 고령화 시대의 든든한 연금 파트너가 되겠다&#34;고 밝혔다.
-                            </p>
-                            
-                          </td>
-                        </tr>
-                      </table>
-                      
+      // 기타 (매칭 안 된 기사)
+      if (counts['기타']) {
+        addSidebarItem(list, '기타', counts['기타'], false);
+      }
 
-                      <!-- 기사 보기 버튼 -->
-                      <p style="margin:10px 0 0;">
-                        <a href="http://www.paxetv.com/news/articleView.html?idxno=263900"
-                           style="display:inline-block; background:#FF6600;
-                                  color:#ffffff; padding:6px 16px;
-                                  border-radius:4px; font-size:12px;
-                                  font-weight:600; text-decoration:none;"
-                           target="_blank">
-                          기사 원문 보기 &rarr;
-                        </a>
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-                
-                <table width="100%" cellpadding="0" cellspacing="0"
-                       style="border-bottom:1px solid #eee;
-                              padding-bottom:20px; margin-bottom:20px;">
-                  <tr>
-                    <td style="vertical-align:top; width:32px; padding-top:2px;">
-                      <!-- 번호 배지 -->
-                      <span style="display:inline-block; background:#FF6600;
-                                   color:#fff; border-radius:50%;
-                                   width:28px; height:28px; line-height:28px;
-                                   text-align:center; font-size:13px;
-                                   font-weight:bold;">
-                        6
-                      </span>
-                    </td>
-                    <td style="padding-left:12px;">
-                      <!-- 제목 (클릭 시 기사로 이동) -->
-                      <a href="https://view.asiae.co.kr/article/2026030410112964707"
-                         style="color:#1a1a2e; font-size:16px;
-                                font-weight:700; text-decoration:none;
-                                line-height:1.5; display:block;"
-                         target="_blank">
-                        김동관 한화 부회장 이번주 호주行[양낙규의 Defence Club]
-                      </a>
+      document.getElementById('count-전체').textContent = articles.length;
+    }
 
-                      <!-- 메타: 언론사 + 날짜 -->
-                      <p style="margin:6px 0 0; font-size:12px; color:#888;">
-                        
-                          <span style="background:#FF6600; color:#fff;
-                                       padding:2px 8px; border-radius:3px;
-                                       margin-right:6px; font-size:11px;
-                                       font-weight:600;">
-                            아시아경제
-                          </span>
-                        
-                        03/04 10:11
-                      </p>
+    function addSidebarItem(container, label, count, isActive) {
+      const btn = document.createElement('button');
+      btn.className = 'sidebar-item' + (isActive ? ' active' : '');
+      btn.innerHTML = label + '<span class="count">' + count + '</span>';
+      btn.onclick = () => filterBy(label);
+      container.appendChild(btn);
+    }
 
-                      <!-- 핵심 3줄 요약 -->
-                      
-                      <table width="100%" cellpadding="0" cellspacing="0"
-                             style="margin:10px 0 0; background:#f8f9fa;
-                                    border-radius:6px; border-left:3px solid #FF6600;">
-                        <tr>
-                          <td style="padding:12px 14px;">
-                            
-                            <p style="margin:0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">1.</span>
-                              4일 업계에 따르면 &#34;김 부회장과 손 대표가 호주 내 한화 관련 방산 시설들을 둘러볼 예정이며 호주 방산시장을 통한 미국 방산시장 구상을 마련하기 위해 방문하고 있다&#34;고 말했다.
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">2.</span>
-                              AS9은 전 세계 자주포 시장 점유율 50%를 넘는 K9 자주포를 호주 육군 요구에 맞춰 개조한 모델이다
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">3.</span>
-                              약 15만㎡ 규모 부지에 본관과 생산동, 주행시험장, 사격장 등 11개 시설을 완비했다
-                            </p>
-                            
-                          </td>
-                        </tr>
-                      </table>
-                      
+    // 계열사 필터 적용
+    function filterBy(sub) {
+      currentFilter = sub;
 
-                      <!-- 기사 보기 버튼 -->
-                      <p style="margin:10px 0 0;">
-                        <a href="https://view.asiae.co.kr/article/2026030410112964707"
-                           style="display:inline-block; background:#FF6600;
-                                  color:#ffffff; padding:6px 16px;
-                                  border-radius:4px; font-size:12px;
-                                  font-weight:600; text-decoration:none;"
-                           target="_blank">
-                          기사 원문 보기 &rarr;
-                        </a>
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-                
-                <table width="100%" cellpadding="0" cellspacing="0"
-                       style="border-bottom:1px solid #eee;
-                              padding-bottom:20px; margin-bottom:20px;">
-                  <tr>
-                    <td style="vertical-align:top; width:32px; padding-top:2px;">
-                      <!-- 번호 배지 -->
-                      <span style="display:inline-block; background:#FF6600;
-                                   color:#fff; border-radius:50%;
-                                   width:28px; height:28px; line-height:28px;
-                                   text-align:center; font-size:13px;
-                                   font-weight:bold;">
-                        7
-                      </span>
-                    </td>
-                    <td style="padding-left:12px;">
-                      <!-- 제목 (클릭 시 기사로 이동) -->
-                      <a href="https://www.kukinews.com/article/view/kuk202603040204"
-                         style="color:#1a1a2e; font-size:16px;
-                                font-weight:700; text-decoration:none;
-                                line-height:1.5; display:block;"
-                         target="_blank">
-                        ’원하청 동일 비율’ 동상이몽…성과급이 불붙인 한화오션 조선소 갈등
-                      </a>
+      // 사이드바 활성화
+      document.querySelectorAll('.sidebar-item').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.trim().startsWith(sub));
+      });
 
-                      <!-- 메타: 언론사 + 날짜 -->
-                      <p style="margin:6px 0 0; font-size:12px; color:#888;">
-                        
-                        03/04 17:38
-                      </p>
+      renderArticles(sub);
+    }
 
-                      <!-- 핵심 3줄 요약 -->
-                      
-                      <table width="100%" cellpadding="0" cellspacing="0"
-                             style="margin:10px 0 0; background:#f8f9fa;
-                                    border-radius:6px; border-left:3px solid #FF6600;">
-                        <tr>
-                          <td style="padding:12px 14px;">
-                            
-                            <p style="margin:0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">1.</span>
-                              ‘총선급’ 재보선, 10여곳 예상…출마·당선무효형 ‘변수’
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">2.</span>
-                              6·3 전국동시지방선거(지선)와 함께 치러지는 재보궐선거(재보선) 선거구가 현재까지 4곳 확정된 가운데, 총
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">3.</span>
-                              2026-03-04 06:00:18
-                            </p>
-                            
-                          </td>
-                        </tr>
-                      </table>
-                      
+    // 기사 렌더링
+    function renderArticles(sub) {
+      const filtered = sub === '전체'
+        ? allArticles
+        : allArticles.filter(a => (a.subsidiary || '기타') === sub);
 
-                      <!-- 기사 보기 버튼 -->
-                      <p style="margin:10px 0 0;">
-                        <a href="https://www.kukinews.com/article/view/kuk202603040204"
-                           style="display:inline-block; background:#FF6600;
-                                  color:#ffffff; padding:6px 16px;
-                                  border-radius:4px; font-size:12px;
-                                  font-weight:600; text-decoration:none;"
-                           target="_blank">
-                          기사 원문 보기 &rarr;
-                        </a>
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-                
-                <table width="100%" cellpadding="0" cellspacing="0"
-                       style="border-bottom:1px solid #eee;
-                              padding-bottom:20px; margin-bottom:20px;">
-                  <tr>
-                    <td style="vertical-align:top; width:32px; padding-top:2px;">
-                      <!-- 번호 배지 -->
-                      <span style="display:inline-block; background:#FF6600;
-                                   color:#fff; border-radius:50%;
-                                   width:28px; height:28px; line-height:28px;
-                                   text-align:center; font-size:13px;
-                                   font-weight:bold;">
-                        8
-                      </span>
-                    </td>
-                    <td style="padding-left:12px;">
-                      <!-- 제목 (클릭 시 기사로 이동) -->
-                      <a href="https://www.sentv.co.kr/article/view/sentv202603040144"
-                         style="color:#1a1a2e; font-size:16px;
-                                font-weight:700; text-decoration:none;
-                                line-height:1.5; display:block;"
-                         target="_blank">
-                        [이슈플러스] 한화오션, 나홀로 ‘환오픈’ 고집…리스크 관리 ‘불안’
-                      </a>
+      const list = document.getElementById('articleList');
+      const badge = document.getElementById('visibleCount');
 
-                      <!-- 메타: 언론사 + 날짜 -->
-                      <p style="margin:6px 0 0; font-size:12px; color:#888;">
-                        
-                        03/04 17:24
-                      </p>
+      if (filtered.length === 0) {
+        list.innerHTML = '<div class="state-box"><div class="icon">🔍</div>해당 계열사 뉴스가 없습니다.</div>';
+        badge.style.display = 'none';
+        return;
+      }
 
-                      <!-- 핵심 3줄 요약 -->
-                      
-                      <table width="100%" cellpadding="0" cellspacing="0"
-                             style="margin:10px 0 0; background:#f8f9fa;
-                                    border-radius:6px; border-left:3px solid #FF6600;">
-                        <tr>
-                          <td style="padding:12px 14px;">
-                            
-                            <p style="margin:0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">1.</span>
-                              삼성중공업은 환헤지 비율을 100% 가깝게 유지하며 가장 보수적인 방식을 택하고 있습니다
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">2.</span>
-                              HD현대중공업은 시장 상황에 따라 헤지 비율을 40%에서 60% 사이에서 유연하게 조정하며 안정성과 수익성을 동시에 고려하고 있는데요.
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">3.</span>
-                              반면 한화오션은 현재 환헤지 비율이 3.4%대에 불과한 사실상의 ‘환오픈(환율 변동에 노출)’ 전략을 유지하고 있습니다
-                            </p>
-                            
-                          </td>
-                        </tr>
-                      </table>
-                      
+      badge.textContent = 'TOP ' + filtered.length;
+      badge.style.display = '';
 
-                      <!-- 기사 보기 버튼 -->
-                      <p style="margin:10px 0 0;">
-                        <a href="https://www.sentv.co.kr/article/view/sentv202603040144"
-                           style="display:inline-block; background:#FF6600;
-                                  color:#ffffff; padding:6px 16px;
-                                  border-radius:4px; font-size:12px;
-                                  font-weight:600; text-decoration:none;"
-                           target="_blank">
-                          기사 원문 보기 &rarr;
-                        </a>
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-                
-                <table width="100%" cellpadding="0" cellspacing="0"
-                       style="border-bottom:1px solid #eee;
-                              padding-bottom:20px; margin-bottom:20px;">
-                  <tr>
-                    <td style="vertical-align:top; width:32px; padding-top:2px;">
-                      <!-- 번호 배지 -->
-                      <span style="display:inline-block; background:#FF6600;
-                                   color:#fff; border-radius:50%;
-                                   width:28px; height:28px; line-height:28px;
-                                   text-align:center; font-size:13px;
-                                   font-weight:bold;">
-                        9
-                      </span>
-                    </td>
-                    <td style="padding-left:12px;">
-                      <!-- 제목 (클릭 시 기사로 이동) -->
-                      <a href="https://www.pinpointnews.co.kr/news/articleView.html?idxno=434021"
-                         style="color:#1a1a2e; font-size:16px;
-                                font-weight:700; text-decoration:none;
-                                line-height:1.5; display:block;"
-                         target="_blank">
-                        한화에어로 급등 효과…한화그룹 시총 5위로 올라서
-                      </a>
+      list.innerHTML = filtered.map((a, i) => `
+        <div class="article-card">
+          <div class="article-header">
+            <div class="article-num">${i + 1}</div>
+            <div class="article-body">
+              <a class="article-title" href="${escHtml(a.original_link || a.link)}" target="_blank" rel="noopener">
+                ${escHtml(a.title)}
+              </a>
+              <div class="article-meta">
+                ${a.press ? `<span class="press-badge">${escHtml(a.press)}</span>` : ''}
+                ${a.subsidiary && a.subsidiary !== '기타' ? `<span class="sub-badge">${escHtml(a.subsidiary)}</span>` : ''}
+                <span>${formatPubDate(a.pub_date)}</span>
+              </div>
+              ${a.summary_lines && a.summary_lines.length ? `
+                <div class="summary-box">
+                  ${a.summary_lines.map((line, idx) => `
+                    <div class="summary-line">
+                      <span class="summary-num">${idx + 1}.</span>${escHtml(line)}
+                    </div>`).join('')}
+                </div>` : ''}
+              <a class="article-link" href="${escHtml(a.original_link || a.link)}" target="_blank" rel="noopener">
+                기사 원문 보기 &rarr;
+              </a>
+            </div>
+          </div>
+        </div>`).join('');
+    }
 
-                      <!-- 메타: 언론사 + 날짜 -->
-                      <p style="margin:6px 0 0; font-size:12px; color:#888;">
-                        
-                        03/04 22:04
-                      </p>
+    // 날짜 포맷
+    function formatDateLabel(dateStr) {
+      const [y, m, d] = dateStr.split('-');
+      return y + '년 ' + parseInt(m) + '월 ' + parseInt(d) + '일';
+    }
 
-                      <!-- 핵심 3줄 요약 -->
-                      
-                      <table width="100%" cellpadding="0" cellspacing="0"
-                             style="margin:10px 0 0; background:#f8f9fa;
-                                    border-radius:6px; border-left:3px solid #FF6600;">
-                        <tr>
-                          <td style="padding:12px 14px;">
-                            
-                            <p style="margin:0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">1.</span>
-                              중동 지역의 지정학적 긴장이 고조되면서 방산 관련 종목이 급등한 가운데 한화그룹이 재계 시가총액 순위 5위에 올라섰다.
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">2.</span>
-                              3일 한국거래소에 따르면 한화에어로스페이스와 한화시스템 등 방산 계열사 주가 상승에 힘입어 한화그룹 상장 계열사의 합산 시가총액은 178조 원 수준으로 집계됐다
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">3.</span>
-                              이는 약 170조 원대인 HD현대그룹을 넘어선 규모다.
-                            </p>
-                            
-                          </td>
-                        </tr>
-                      </table>
-                      
+    function formatPubDate(isoStr) {
+      if (!isoStr) return '';
+      const d = new Date(isoStr);
+      if (isNaN(d)) return isoStr;
+      const mo = String(d.getMonth() + 1).padStart(2, '0');
+      const da = String(d.getDate()).padStart(2, '0');
+      const h  = String(d.getHours()).padStart(2, '0');
+      const mi = String(d.getMinutes()).padStart(2, '0');
+      return mo + '/' + da + ' ' + h + ':' + mi;
+    }
 
-                      <!-- 기사 보기 버튼 -->
-                      <p style="margin:10px 0 0;">
-                        <a href="https://www.pinpointnews.co.kr/news/articleView.html?idxno=434021"
-                           style="display:inline-block; background:#FF6600;
-                                  color:#ffffff; padding:6px 16px;
-                                  border-radius:4px; font-size:12px;
-                                  font-weight:600; text-decoration:none;"
-                           target="_blank">
-                          기사 원문 보기 &rarr;
-                        </a>
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-                
-                <table width="100%" cellpadding="0" cellspacing="0"
-                       style="
-                              padding-bottom:20px; margin-bottom:20px;">
-                  <tr>
-                    <td style="vertical-align:top; width:32px; padding-top:2px;">
-                      <!-- 번호 배지 -->
-                      <span style="display:inline-block; background:#FF6600;
-                                   color:#fff; border-radius:50%;
-                                   width:28px; height:28px; line-height:28px;
-                                   text-align:center; font-size:13px;
-                                   font-weight:bold;">
-                        10
-                      </span>
-                    </td>
-                    <td style="padding-left:12px;">
-                      <!-- 제목 (클릭 시 기사로 이동) -->
-                      <a href="https://www.mt.co.kr/stock/2026/03/04/2026030415441628474"
-                         style="color:#1a1a2e; font-size:16px;
-                                font-weight:700; text-decoration:none;
-                                line-height:1.5; display:block;"
-                         target="_blank">
-                        &#34;ETF로 달러 벌겠다&#34;…한화운용, K제조업 ETF 美·유럽 상장한다
-                      </a>
+    function escHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+                .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
 
-                      <!-- 메타: 언론사 + 날짜 -->
-                      <p style="margin:6px 0 0; font-size:12px; color:#888;">
-                        
-                          <span style="background:#FF6600; color:#fff;
-                                       padding:2px 8px; border-radius:3px;
-                                       margin-right:6px; font-size:11px;
-                                       font-weight:600;">
-                            머니투데이
-                          </span>
-                        
-                        03/04 16:18
-                      </p>
-
-                      <!-- 핵심 3줄 요약 -->
-                      
-                      <table width="100%" cellpadding="0" cellspacing="0"
-                             style="margin:10px 0 0; background:#f8f9fa;
-                                    border-radius:6px; border-left:3px solid #FF6600;">
-                        <tr>
-                          <td style="padding:12px 14px;">
-                            
-                            <p style="margin:0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">1.</span>
-                              한화자산운용, PLUS ETF 순자산 10조원 돌파 기념 간담회
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">2.</span>
-                              최영진 한화자산운용 CMO 겸 부사장이 4일 서울 영등포구 여의도 한국거래소에서 열린 PLUS ETF 순자산 10조원 간담회에서 발표하고 있다
-                            </p>
-                            
-                            <p style="margin:6px 0 0;
-                                      font-size:13px; color:#444; line-height:1.6;">
-                              <span style="color:#FF6600; font-weight:bold; margin-right:4px;">3.</span>
-                              김종호 한화자산운용 대표이사는 &#34;ETF는 이제 우리나라 국민의 보편적인 간접투자 수단 중 하나로 자리매김했다&#34;며 &#34;PLUS ETF는 순자산 10조원 돌파를 계기로 국내를 넘어 글로벌 시장에서도 통할 수 있는 경쟁력을 갖추겠다&#34;고 전했다.
-                            </p>
-                            
-                          </td>
-                        </tr>
-                      </table>
-                      
-
-                      <!-- 기사 보기 버튼 -->
-                      <p style="margin:10px 0 0;">
-                        <a href="https://www.mt.co.kr/stock/2026/03/04/2026030415441628474"
-                           style="display:inline-block; background:#FF6600;
-                                  color:#ffffff; padding:6px 16px;
-                                  border-radius:4px; font-size:12px;
-                                  font-weight:600; text-decoration:none;"
-                           target="_blank">
-                          기사 원문 보기 &rarr;
-                        </a>
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-                
-              
-            </td>
-          </tr>
-
-          <!-- 푸터 -->
-          <tr>
-            <td style="background:#f8f8fa; padding:20px 40px;
-                       text-align:center; border-top:1px solid #eee;">
-              <p style="margin:0; font-size:11px; color:#aaa;">
-                자동 생성 | 2026-03-04 22:44 | hanwha-news-crawler
-              </p>
-              <p style="margin:4px 0 0; font-size:11px; color:#ccc;">
-                검색 키워드: 한화에어로스페이스, 한화오션, 김동관, 한화에너지
-              </p>
-            </td>
-          </tr>
-
-        </table>
-
-        <!-- 하단 안내 -->
-        <p style="text-align:center; font-size:11px; color:#bbb;
-                  margin:16px 0 0;">
-          이 메일은 hanwha-news-crawler에 의해 자동 발송되었습니다.
-        </p>
-      </td>
-    </tr>
-  </table>
+    // 초기 로드
+    loadDates();
+  </script>
 </body>
 </html>
