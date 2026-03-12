@@ -1,315 +1,531 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>한화 뉴스 데일리 브리핑</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <style>
+    /* ─── Design Tokens ─── */
+    :root {
+      --font: 'PretendardVariable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --gnb-height: 62px;
+      --layout-padding: 40px;
+      --layout-max-width: 1120px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+      /* Light theme */
+      --bg: #F5F5F7;
+      --surface: #FFFFFF;
+      --surface-secondary: #F8F8FA;
+      --border: #E5E5EA;
+      --border-subtle: #F0F0F3;
+      --text-primary: #1A1A1E;
+      --text-secondary: #6E6E7A;
+      --text-tertiary: #AEAEB8;
+      --brand: #FF6600;
+      --brand-hover: #E55500;
+      --brand-subtle: #FFF3EC;
+      --brand-text: #C44D00;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    [data-theme="dark"] {
+      --bg: #111114;
+      --surface: #1C1C20;
+      --surface-secondary: #242428;
+      --border: #2E2E34;
+      --border-subtle: #222226;
+      --text-primary: #E8E8EC;
+      --text-secondary: #8E8E9A;
+      --text-tertiary: #5E5E6A;
+      --brand: #FF7720;
+      --brand-hover: #FF8F40;
+      --brand-subtle: #2A1A0E;
+      --brand-text: #FF9F60;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    /* ─── Reset ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: #f4f4f7;
-      color: #1a1a2e;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text-primary);
       min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition), color var(--transition);
     }
 
-    /* ── 헤더 ── */
-    .header {
-      background: linear-gradient(135deg, #FF6600, #FF8533);
-      padding: 20px 32px;
+    /* ─── GNB ─── */
+    .gnb {
+      height: var(--gnb-height);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
+      padding: 0 var(--layout-padding);
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      box-shadow: var(--shadow-sm);
     }
-    .header-title {
-      color: #fff;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
+
+    .gnb-inner {
+      max-width: var(--layout-max-width);
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
-    .header-right {
+
+    .gnb-brand {
       display: flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
     }
-    .date-label {
-      color: rgba(255,255,255,0.85);
-      font-size: 13px;
-    }
-    .date-select {
-      background: rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.4);
+
+    .gnb-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--brand);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
       color: #fff;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .gnb-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.2px;
+    }
+
+    .gnb-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .date-picker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .date-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .date-select {
+      background: var(--surface-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 7px 32px 7px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-family: var(--font);
+      font-weight: 500;
       cursor: pointer;
       outline: none;
       appearance: none;
       -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='white' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' viewBox='0 0 10 6'%3E%3Cpath stroke='%236E6E7A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 10px center;
-      padding-right: 28px;
+      transition: border-color var(--transition), box-shadow var(--transition);
     }
-    .date-select option { background: #FF6600; color: #fff; }
+    .date-select:hover { border-color: var(--brand); }
+    .date-select:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(255,102,0,0.12); }
+    .date-select option { background: var(--surface); color: var(--text-primary); }
 
-    /* ── 레이아웃 ── */
-    .layout {
+    /* Theme toggle */
+    .theme-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      background: var(--surface-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
       display: flex;
-      max-width: 1100px;
-      margin: 24px auto;
-      padding: 0 16px;
-      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: background var(--transition), border-color var(--transition);
+      color: var(--text-primary);
+    }
+    .theme-btn:hover { background: var(--brand-subtle); border-color: var(--brand); }
+
+    /* ─── Layout ─── */
+    .layout {
+      max-width: var(--layout-max-width);
+      margin: 32px auto;
+      padding: 0 var(--layout-padding);
+      display: flex;
+      gap: 24px;
       align-items: flex-start;
     }
 
-    /* ── 사이드바 ── */
+    /* ─── Sidebar ─── */
     .sidebar {
-      width: 200px;
+      width: 196px;
       flex-shrink: 0;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-      overflow: hidden;
       position: sticky;
-      top: 80px;
-    }
-    .sidebar-title {
-      background: #f8f8fa;
-      padding: 12px 16px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #888;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      border-bottom: 1px solid #eee;
-    }
-    .sidebar-item {
-      display: block;
-      width: 100%;
-      padding: 10px 16px;
-      font-size: 13px;
-      color: #444;
-      cursor: pointer;
-      border: none;
-      background: none;
-      text-align: left;
-      border-bottom: 1px solid #f4f4f7;
-      transition: background 0.15s;
-      position: relative;
-    }
-    .sidebar-item:hover { background: #fff5ee; color: #FF6600; }
-    .sidebar-item.active {
-      background: #FF6600;
-      color: #fff;
-      font-weight: 600;
-    }
-    .sidebar-item .count {
-      float: right;
-      font-size: 11px;
-      opacity: 0.7;
-      background: rgba(0,0,0,0.08);
-      padding: 1px 6px;
-      border-radius: 10px;
-    }
-    .sidebar-item.active .count {
-      background: rgba(255,255,255,0.25);
+      top: calc(var(--gnb-height) + 24px);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    /* ── 메인 콘텐츠 ── */
+    .sidebar-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sidebar-header {
+      padding: 12px 16px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-tertiary);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .sidebar-body {
+      padding: 6px;
+    }
+
+    .sidebar-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 8px 10px;
+      border: none;
+      background: transparent;
+      border-radius: var(--radius-sm);
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+      text-align: left;
+    }
+    .sidebar-btn:hover { background: var(--surface-secondary); color: var(--text-primary); }
+    .sidebar-btn.active {
+      background: var(--brand-subtle);
+      color: var(--brand-text);
+      font-weight: 600;
+    }
+    .sidebar-btn .count {
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--border);
+      color: var(--text-tertiary);
+      padding: 1px 6px;
+      border-radius: 20px;
+      min-width: 20px;
+      text-align: center;
+    }
+    .sidebar-btn.active .count {
+      background: rgba(255,102,0,0.15);
+      color: var(--brand);
+    }
+
+    /* ─── Main ─── */
     .main {
       flex: 1;
       min-width: 0;
     }
+
     .meta-bar {
-      font-size: 12px;
-      color: #aaa;
-      margin-bottom: 14px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
     }
-    .article-count-badge {
-      background: #FF6600;
-      color: #fff;
-      padding: 2px 10px;
-      border-radius: 12px;
+
+    .meta-text {
+      font-size: 13px;
+      color: var(--text-tertiary);
+    }
+
+    .count-badge {
       font-size: 12px;
       font-weight: 600;
+      background: var(--brand-subtle);
+      color: var(--brand-text);
+      padding: 4px 12px;
+      border-radius: 20px;
     }
 
-    /* ── 기사 카드 ── */
+    /* ─── Article Card ─── */
     .article-card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin-bottom: 14px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      transition: box-shadow 0.2s;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
     }
-    .article-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+    .article-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-1px);
+      border-color: var(--brand);
+    }
     .article-card.hidden { display: none; }
 
-    .article-header { display: flex; gap: 14px; align-items: flex-start; }
-    .article-num {
-      background: #FF6600;
-      color: #fff;
-      border-radius: 50%;
-      width: 28px;
-      height: 28px;
-      line-height: 28px;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 700;
-      flex-shrink: 0;
+    .article-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
     }
-    .article-body { flex: 1; min-width: 0; }
+
+    .article-index {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-tertiary);
+      width: 20px;
+      flex-shrink: 0;
+      padding-top: 3px;
+    }
+
+    .article-content { flex: 1; min-width: 0; }
+
     .article-title {
       font-size: 15px;
-      font-weight: 700;
-      color: #1a1a2e;
+      font-weight: 600;
+      color: var(--text-primary);
       text-decoration: none;
-      line-height: 1.5;
+      line-height: 1.55;
       display: block;
+      letter-spacing: -0.15px;
+      transition: color var(--transition);
     }
-    .article-title:hover { color: #FF6600; }
+    .article-title:hover { color: var(--brand); }
+
     .article-meta {
-      margin-top: 6px;
-      font-size: 12px;
-      color: #888;
       display: flex;
       align-items: center;
       flex-wrap: wrap;
       gap: 6px;
+      margin-top: 8px;
     }
-    .press-badge {
-      background: #FF6600;
-      color: #fff;
-      padding: 2px 8px;
-      border-radius: 3px;
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 6px;
       font-size: 11px;
       font-weight: 600;
+      letter-spacing: 0.1px;
     }
-    .sub-badge {
-      background: #f0f0f5;
-      color: #666;
-      padding: 2px 8px;
-      border-radius: 3px;
-      font-size: 11px;
-    }
-    .summary-box {
-      margin-top: 12px;
-      background: #f8f9fa;
-      border-radius: 6px;
-      border-left: 3px solid #FF6600;
-      padding: 12px 14px;
-    }
-    .summary-line {
-      font-size: 13px;
-      color: #444;
-      line-height: 1.6;
-      margin-top: 5px;
-    }
-    .summary-line:first-child { margin-top: 0; }
-    .summary-num {
-      color: #FF6600;
-      font-weight: 700;
-      margin-right: 4px;
-    }
-    .article-link {
-      display: inline-block;
-      margin-top: 12px;
-      background: #FF6600;
+    .tag-press {
+      background: var(--brand);
       color: #fff;
-      padding: 6px 16px;
-      border-radius: 4px;
+    }
+    .tag-sub {
+      background: var(--surface-secondary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .tag-date {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      font-weight: 400;
+    }
+
+    /* Summary box */
+    .summary {
+      background: var(--surface-secondary);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--brand);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 14px 16px;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .summary-item {
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .summary-num {
+      font-weight: 700;
+      color: var(--brand);
+      flex-shrink: 0;
+      min-width: 14px;
+    }
+
+    /* CTA button */
+    .read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 14px;
+      padding: 7px 14px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font);
       font-size: 12px;
       font-weight: 600;
+      color: var(--text-secondary);
       text-decoration: none;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
     }
-    .article-link:hover { background: #e55a00; }
+    .read-btn:hover {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
 
-    /* ── 빈 상태 / 로딩 ── */
+    /* ─── State boxes ─── */
     .state-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 64px 24px;
       text-align: center;
-      padding: 60px 20px;
-      color: #aaa;
-      font-size: 14px;
-      background: #fff;
-      border-radius: 10px;
+      box-shadow: var(--shadow-sm);
     }
-    .state-box .icon { font-size: 36px; margin-bottom: 12px; }
+    .state-icon { font-size: 40px; margin-bottom: 16px; line-height: 1; }
+    .state-title { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+    .state-sub { font-size: 13px; color: var(--text-tertiary); }
 
-    /* ── 푸터 ── */
+    /* ─── Footer ─── */
     .footer {
       text-align: center;
-      padding: 24px;
-      font-size: 11px;
-      color: #bbb;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: var(--text-tertiary);
     }
 
-    /* ── 반응형 ── */
-    @media (max-width: 640px) {
-      .layout { flex-direction: column; }
-      .sidebar { width: 100%; position: static; }
-      .header { padding: 14px 16px; }
+    /* ─── Responsive ─── */
+    @media (max-width: 767px) {
+      :root { --layout-padding: 16px; }
+      .layout { flex-direction: column; margin: 16px auto; }
+      .sidebar { width: 100%; position: static; flex-direction: row; overflow-x: auto; }
+      .sidebar-section { min-width: 140px; }
+      .gnb { padding: 0 16px; }
+      .date-label { display: none; }
+      .article-card { padding: 18px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 헤더 -->
-  <div class="header">
-    <div class="header-title">한화 뉴스 데일리 브리핑</div>
-    <div class="header-right">
-      <span class="date-label">날짜 선택</span>
-      <select class="date-select" id="dateSelect" onchange="loadDate(this.value)">
-        <option value="">불러오는 중...</option>
-      </select>
+  <!-- GNB -->
+  <nav class="gnb">
+    <div class="gnb-inner">
+      <a class="gnb-brand" href="#">
+        <div class="gnb-logo">한</div>
+        <span class="gnb-title">한화 뉴스 브리핑</span>
+      </a>
+      <div class="gnb-right">
+        <div class="date-picker">
+          <span class="date-label">날짜</span>
+          <select class="date-select" id="dateSelect" onchange="loadDate(this.value)">
+            <option value="">불러오는 중…</option>
+          </select>
+        </div>
+        <button class="theme-btn" onclick="toggleTheme()" title="테마 전환" id="themeBtn">🌙</button>
+      </div>
     </div>
-  </div>
+  </nav>
 
-  <!-- 레이아웃 -->
+  <!-- Layout -->
   <div class="layout">
-    <!-- 사이드바 -->
-    <div class="sidebar">
-      <div class="sidebar-title">계열사</div>
-      <div id="sidebarList"></div>
-      <div class="sidebar-title" style="margin-top:40px;">언론사</div>
-      <div id="pressList"></div>
-    </div>
 
-    <!-- 메인 -->
-    <div class="main">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-header">계열사</div>
+        <div class="sidebar-body" id="sidebarSub"></div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-header">언론사</div>
+        <div class="sidebar-body" id="sidebarPress"></div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
       <div class="meta-bar">
-        <span id="metaText">날짜를 선택하세요</span>
-        <span class="article-count-badge" id="visibleCount" style="display:none"></span>
+        <span class="meta-text" id="metaText">날짜를 선택하세요</span>
+        <span class="count-badge" id="countBadge" style="display:none"></span>
       </div>
       <div id="articleList">
         <div class="state-box">
-          <div class="icon">📰</div>
-          날짜를 선택하면 뉴스가 표시됩니다.
+          <div class="state-icon">📰</div>
+          <div class="state-title">날짜를 선택하면 뉴스가 표시됩니다</div>
+          <div class="state-sub">상단 셀렉터에서 날짜를 선택해주세요</div>
         </div>
       </div>
-    </div>
+    </main>
+
   </div>
 
-  <div class="footer" id="footer"></div>
+  <footer class="footer" id="footer"></footer>
 
   <script>
+    /* ─── State ─── */
     let allArticles = [];
-    let currentSubFilter = '전체';
-    let currentPressFilter = '전체';
+    let currentSub = '전체';
+    let currentPress = '전체';
 
-    // 날짜 목록 로드
+    /* ─── Theme ─── */
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.dataset.theme === 'dark';
+      html.dataset.theme = isDark ? 'light' : 'dark';
+      document.getElementById('themeBtn').textContent = isDark ? '🌙' : '☀️';
+      localStorage.setItem('theme', html.dataset.theme);
+    }
+    (function initTheme() {
+      const saved = localStorage.getItem('theme') || 'light';
+      document.documentElement.dataset.theme = saved;
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('themeBtn').textContent = saved === 'dark' ? '☀️' : '🌙';
+      });
+    })();
+
+    /* ─── Data loading ─── */
     async function loadDates() {
       try {
         const res = await fetch('data/dates.json');
@@ -328,18 +544,15 @@
 
         if (dates.length > 0) loadDate(dates[0]);
       } catch (e) {
-        document.getElementById('articleList').innerHTML =
-          '<div class="state-box"><div class="icon">⚠️</div>데이터를 불러올 수 없습니다.<br><small>' + e.message + '</small></div>';
+        showState('⚠️', '데이터를 불러올 수 없습니다', e.message);
       }
     }
 
-    // 특정 날짜 데이터 로드
     async function loadDate(dateStr) {
       if (!dateStr) return;
-      document.getElementById('articleList').innerHTML =
-        '<div class="state-box"><div class="icon">⏳</div>불러오는 중...</div>';
-      currentSubFilter = '전체';
-      currentPressFilter = '전체';
+      showState('⏳', '불러오는 중…', '');
+      currentSub = '전체';
+      currentPress = '전체';
 
       try {
         const res = await fetch('data/' + dateStr + '.json');
@@ -349,148 +562,143 @@
         allArticles = data.articles || [];
         buildSidebar(allArticles, data.all_subsidiaries || data.subsidiaries || [], data.all_press || data.press_list || []);
         renderArticles();
+
         document.getElementById('metaText').textContent =
-          formatDateLabel(dateStr) + ' | 생성: ' + (data.generated_at || '');
+          formatDateLabel(dateStr) + ' · 생성: ' + (data.generated_at || '');
         document.getElementById('footer').textContent =
-          '자동 생성 | ' + (data.generated_at || '') + ' | hanwha-news-crawler';
+          '자동 생성 · ' + (data.generated_at || '') + ' · hanwha-news-crawler';
       } catch (e) {
-        document.getElementById('articleList').innerHTML =
-          '<div class="state-box"><div class="icon">⚠️</div>데이터를 불러올 수 없습니다.<br><small>' + e.message + '</small></div>';
+        showState('⚠️', '데이터를 불러올 수 없습니다', e.message);
       }
     }
 
-    // 사이드바 생성 (계열사 + 언론사)
-    function buildSidebar(articles, subsidiaries, pressList) {
-      // 계열사 카운트
-      const subCounts = {};
+    /* ─── Sidebar ─── */
+    function buildSidebar(articles, subs, press) {
+      const subCounts = {}, pressCounts = {};
       articles.forEach(a => {
         const s = a.subsidiary || '기타';
         subCounts[s] = (subCounts[s] || 0) + 1;
-      });
-
-      const subList = document.getElementById('sidebarList');
-      subList.innerHTML = '';
-      addSidebarItem(subList, '전체', articles.length, true, () => filterBySub('전체'));
-      subsidiaries.forEach(sub => {
-        addSidebarItem(subList, sub, subCounts[sub] || 0, false, () => filterBySub(sub));
-      });
-      if (subCounts['기타']) {
-        addSidebarItem(subList, '기타', subCounts['기타'], false, () => filterBySub('기타'));
-      }
-
-      // 언론사 카운트
-      const pressCounts = {};
-      articles.forEach(a => {
         if (a.press) pressCounts[a.press] = (pressCounts[a.press] || 0) + 1;
       });
 
-      const pList = document.getElementById('pressList');
-      pList.innerHTML = '';
-      addSidebarItem(pList, '전체', articles.length, true, () => filterByPress('전체'));
-      pressList.forEach(press => {
-        addSidebarItem(pList, press, pressCounts[press] || 0, false, () => filterByPress(press));
-      });
+      fillFilter(document.getElementById('sidebarSub'), '전체', articles.length, subs, subCounts, '기타', filterBySub);
+      fillFilter(document.getElementById('sidebarPress'), '전체', articles.length, press, pressCounts, null, filterByPress);
     }
 
-    function addSidebarItem(container, label, count, isActive, onClick) {
+    function fillFilter(el, allLabel, total, items, counts, extra, handler) {
+      el.innerHTML = '';
+      addBtn(el, allLabel, total, true, () => handler(allLabel));
+      items.forEach(item => addBtn(el, item, counts[item] || 0, false, () => handler(item)));
+      if (extra && counts[extra]) addBtn(el, extra, counts[extra], false, () => handler(extra));
+    }
+
+    function addBtn(container, label, count, active, onClick) {
       const btn = document.createElement('button');
-      btn.className = 'sidebar-item' + (isActive ? ' active' : '');
+      btn.className = 'sidebar-btn' + (active ? ' active' : '');
       btn.dataset.value = label;
-      btn.innerHTML = escHtml(label) + '<span class="count">' + count + '</span>';
-      btn.onclick = onClick;
+      btn.innerHTML = `<span>${escHtml(label)}</span><span class="count">${count}</span>`;
+      btn.addEventListener('click', onClick);
       container.appendChild(btn);
     }
 
-    // 계열사 필터
-    function filterBySub(sub) {
-      currentSubFilter = sub;
-      document.querySelectorAll('#sidebarList .sidebar-item').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.value === sub);
-      });
+    function filterBySub(val) {
+      currentSub = val;
+      document.querySelectorAll('#sidebarSub .sidebar-btn').forEach(b => b.classList.toggle('active', b.dataset.value === val));
       renderArticles();
     }
 
-    // 언론사 필터
-    function filterByPress(press) {
-      currentPressFilter = press;
-      document.querySelectorAll('#pressList .sidebar-item').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.value === press);
-      });
+    function filterByPress(val) {
+      currentPress = val;
+      document.querySelectorAll('#sidebarPress .sidebar-btn').forEach(b => b.classList.toggle('active', b.dataset.value === val));
       renderArticles();
     }
 
-    // 기사 렌더링 (계열사 + 언론사 필터 동시 적용)
+    /* ─── Render ─── */
     function renderArticles() {
       const filtered = allArticles.filter(a => {
-        const subOk = currentSubFilter === '전체' || (a.subsidiary || '기타') === currentSubFilter;
-        const pressOk = currentPressFilter === '전체' || (a.press || '') === currentPressFilter;
+        const subOk  = currentSub   === '전체' || (a.subsidiary || '기타') === currentSub;
+        const pressOk = currentPress === '전체' || (a.press || '') === currentPress;
         return subOk && pressOk;
       });
 
-      const list = document.getElementById('articleList');
-      const badge = document.getElementById('visibleCount');
+      const badge = document.getElementById('countBadge');
+      const list  = document.getElementById('articleList');
 
       if (filtered.length === 0) {
-        list.innerHTML = '<div class="state-box"><div class="icon">🔍</div>조건에 맞는 기사가 없습니다.</div>';
         badge.style.display = 'none';
+        showState('🔍', '조건에 맞는 기사가 없습니다', '다른 필터를 선택해 보세요');
         return;
       }
 
       badge.textContent = filtered.length + '건';
       badge.style.display = '';
 
-      list.innerHTML = filtered.map((a, i) => `
-        <div class="article-card">
-          <div class="article-header">
-            <div class="article-num">${i + 1}</div>
-            <div class="article-body">
-              <a class="article-title" href="${escHtml(a.original_link || a.link)}" target="_blank" rel="noopener">
-                ${escHtml(a.title)}
-              </a>
-              <div class="article-meta">
-                ${a.press ? `<span class="press-badge">${escHtml(a.press)}</span>` : ''}
-                ${a.subsidiary && a.subsidiary !== '기타' ? `<span class="sub-badge">${escHtml(a.subsidiary)}</span>` : ''}
-                <span>${formatPubDate(a.pub_date)}</span>
+      list.innerHTML = filtered.map((a, i) => {
+        const summaryHtml = (a.summary_lines && a.summary_lines.length) ? `
+          <div class="summary">
+            ${a.summary_lines.map((line, idx) => `
+              <div class="summary-item">
+                <span class="summary-num">${idx + 1}</span>
+                <span>${escHtml(line)}</span>
+              </div>`).join('')}
+          </div>` : '';
+
+        return `
+          <div class="article-card">
+            <div class="article-top">
+              <span class="article-index">${i + 1}</span>
+              <div class="article-content">
+                <a class="article-title" href="${escHtml(a.original_link || a.link)}" target="_blank" rel="noopener noreferrer">
+                  ${escHtml(a.title)}
+                </a>
+                <div class="article-meta">
+                  ${a.press ? `<span class="tag tag-press">${escHtml(a.press)}</span>` : ''}
+                  ${a.subsidiary && a.subsidiary !== '기타' ? `<span class="tag tag-sub">${escHtml(a.subsidiary)}</span>` : ''}
+                  <span class="tag-date">${formatPubDate(a.pub_date)}</span>
+                </div>
               </div>
-              ${a.summary_lines && a.summary_lines.length ? `
-                <div class="summary-box">
-                  ${a.summary_lines.map((line, idx) => `
-                    <div class="summary-line">
-                      <span class="summary-num">${idx + 1}.</span>${escHtml(line)}
-                    </div>`).join('')}
-                </div>` : ''}
-              <a class="article-link" href="${escHtml(a.original_link || a.link)}" target="_blank" rel="noopener">
-                기사 원문 보기 &rarr;
-              </a>
             </div>
-          </div>
-        </div>`).join('');
+            ${summaryHtml}
+            <a class="read-btn" href="${escHtml(a.original_link || a.link)}" target="_blank" rel="noopener noreferrer">
+              기사 원문 보기 →
+            </a>
+          </div>`;
+      }).join('');
     }
 
-    // 날짜 포맷
-    function formatDateLabel(dateStr) {
-      const [y, m, d] = dateStr.split('-');
-      return y + '년 ' + parseInt(m) + '월 ' + parseInt(d) + '일';
+    /* ─── Helpers ─── */
+    function showState(icon, title, sub) {
+      document.getElementById('countBadge').style.display = 'none';
+      document.getElementById('articleList').innerHTML = `
+        <div class="state-box">
+          <div class="state-icon">${icon}</div>
+          <div class="state-title">${escHtml(title)}</div>
+          ${sub ? `<div class="state-sub">${escHtml(sub)}</div>` : ''}
+        </div>`;
     }
 
-    function formatPubDate(isoStr) {
-      if (!isoStr) return '';
-      const d = new Date(isoStr);
-      if (isNaN(d)) return isoStr;
-      const mo = String(d.getMonth() + 1).padStart(2, '0');
-      const da = String(d.getDate()).padStart(2, '0');
-      const h  = String(d.getHours()).padStart(2, '0');
-      const mi = String(d.getMinutes()).padStart(2, '0');
-      return mo + '/' + da + ' ' + h + ':' + mi;
+    function formatDateLabel(d) {
+      const [y, m, day] = d.split('-');
+      return y + '년 ' + parseInt(m) + '월 ' + parseInt(day) + '일';
     }
 
-    function escHtml(str) {
-      if (!str) return '';
-      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-                .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    function formatPubDate(iso) {
+      if (!iso) return '';
+      const d = new Date(iso);
+      if (isNaN(d)) return iso;
+      return (d.getMonth() + 1).toString().padStart(2, '0') + '/'
+           + d.getDate().toString().padStart(2, '0') + ' '
+           + d.getHours().toString().padStart(2, '0') + ':'
+           + d.getMinutes().toString().padStart(2, '0');
     }
 
-    // 초기 로드
+    function escHtml(s) {
+      if (!s) return '';
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+               .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
+    /* ─── Boot ─── */
     loadDates();
   </script>
 </body>
