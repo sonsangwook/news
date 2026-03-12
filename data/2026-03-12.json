@@ -1,16 +1,15 @@
 {
   "date": "2026-03-12",
-  "generated_at": "2026-03-12 12:48",
+  "generated_at": "2026-03-12 16:05",
   "article_count": 8,
   "subsidiaries": [
     "한화시스템",
     "한화"
   ],
   "press_list": [
-    "뉴시스",
-    "서울경제",
+    "더팩트",
+    "연합뉴스",
     "이데일리",
-    "조선비즈",
     "조선일보"
   ],
   "all_subsidiaries": [
@@ -54,31 +53,59 @@
   ],
   "articles": [
     {
-      "title": "한화시스템, 2026년 상반기 신입사원 정기채용 실시",
-      "link": "https://www.koreaittimes.com/news/articleView.html?idxno=151761",
-      "original_link": "https://www.koreaittimes.com/news/articleView.html?idxno=151761",
+      "title": "한화시스템, 방산·ICT통합 세자릿수 신입사원 채용",
+      "link": "https://www.catchnews.kr/news/articleView.html?idxno=121558",
+      "original_link": "https://www.catchnews.kr/news/articleView.html?idxno=121558",
       "press": "",
-      "pub_date": "2026-03-12T11:56:00",
+      "pub_date": "2026-03-12T15:56:00",
       "keyword": "한화시스템",
       "subsidiary": "한화시스템",
       "summary_lines": [
-        "방산·ICT 통합 세 자릿수 규모… 핵심 R&D 인력 및 글로벌 인재 확보",
-        "한화시스템이 미래 방산 및 첨단 기술 시장을 선도할 인재 확보를 위해 ‘2026년 상반기 신입사원 정기채용’에 나섰다.",
-        "한화시스템은 이번 채용을 통해 ▲회사의 성장을 견인할 수 있는 연구개발(R&D) 직군 ▲AI와 빅데이터 기반의 IT시스템 개발 및 운영 직군 ▲효율적인 사업 운영을 지원할 경영지원 직군 등 다양한 분야에서 세 자릿 수 규모의 우수 인재를 모집한다."
+        "3월 5일 주식시장 주요공시",
+        "3월 6일 주식시장 주요공시",
+        "3월 9일 주식시장 주요공시"
       ]
     },
     {
-      "title": "대법 \"한화오션 성과급, 임금 아냐\"…'퇴직금 청구' 사측 승소",
-      "link": "https://n.news.naver.com/mnews/article/003/0013817540?sid=102",
-      "original_link": "https://www.newsis.com/view/NISX20260312_0003545399",
-      "press": "뉴시스",
-      "pub_date": "2026-03-12T11:43:00",
+      "title": "한화시스템, 2026년 상반기 신입사원 정기채용 실시… 세 자릿수 규모",
+      "link": "https://www.geconomy.co.kr/news/article.html?no=317283",
+      "original_link": "https://www.geconomy.co.kr/news/article.html?no=317283",
+      "press": "",
+      "pub_date": "2026-03-12T15:56:00",
+      "keyword": "한화시스템",
+      "subsidiary": "한화시스템",
+      "summary_lines": [
+        "지이코노미 양하영 기자 | 한화시스템이 미래 방산과 첨단 IT 시장의 혁신을 이끌어갈 대규모 신입사원 채용에 나선다.",
+        "한화시스템(대표이사 손재일)은 '2026년 상반기 신입사원 정기채용'을 시작하고, 연구개발(R&D)과 IT 시스템 개발 및 운영 등 다양한 직군에서 세 자릿수 규모의 인재를 모집한다고 12일 밝혔다",
+        "이번 채용은 글로벌 비즈니스 역량과 핵심 기술력을 갖춘 인재 확보에 초점을 맞췄다."
+      ]
+    },
+    {
+      "title": "대미투자특별법 국회 통과…기대감 도는 한화오션",
+      "link": "https://n.news.naver.com/mnews/article/001/0015955235?sid=100",
+      "original_link": "https://www.yna.co.kr/view/PYH20260312151900052?input=1196m",
+      "press": "연합뉴스",
+      "pub_date": "2026-03-12T15:14:00",
       "keyword": "한화오션",
       "subsidiary": "한화",
       "summary_lines": [
-        "法 \"사업 이익 분배일 뿐 임금 아니다\" 판단",
-        "\"성과급도 임금\" 소송 계속…대법, 결론 엇갈려",
-        "대법원은 \"한화오션 경영성과급의 성과지표는 영업이익, 경상이익 등 재무지표를 성과지표로 한다\"며 \"목표 대비 달성도에 따라 지급률이 차등 결정되는 구조임을 고려하더라도, 근로 제공과의 직접 또는 밀접한 관련성이 있다고 보기 어렵다\"고 판시했다."
+        "이 특별법은 3천500억달러 규모의 대미 투자를 시행하겠다는 내용을 담은 한미 업무협약(MOU)을 이행하기 위해 별도의 한미전략투자공사 설립을 골자로 하며 조선협력의 투자 비중이 가장 큰 것으로 알려졌다",
+        "사진은 이날 한화오션 거제사업장의 모습. 2026.3.12",
+        "image@yna.co.kr"
+      ]
+    },
+    {
+      "title": "대법 \"한화오션 경영성과급 임금 아냐\"…퇴직자 972명 패소 확정",
+      "link": "https://n.news.naver.com/mnews/article/629/0000480721?sid=102",
+      "original_link": "https://news.tf.co.kr/read/life/2301429.htm",
+      "press": "더팩트",
+      "pub_date": "2026-03-12T14:30:00",
+      "keyword": "한화오션",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "대법원 \"경영성과급, 평균임금 산정 임금 아냐\"",
+        "한화오션(옛 대우조선해양) 퇴직자 972명이 재직 중 지급받은 경영성과급을 퇴직금 산정에 포함해 다시 계산해야 한다며 회사를 상대로 소송을 냈지만 대법원에서 패소했다",
+        "이에 생산직 근로자 등 원고들은 해당 성과급이 평균임금 산정의 기초가 되는 임금에 해당한다며 이를 포함해 다시 계산한 퇴직금과 기존 지급액의 차액을 지급하라고 지난 2021년 12월 소송을 제기했다."
       ]
     },
     {
@@ -110,45 +137,17 @@
       ]
     },
     {
-      "title": "대법 “한화오션 경영성과급은 임금 아니다”…퇴직자들 최종 패소",
-      "link": "https://n.news.naver.com/mnews/article/366/0001147791?sid=102",
-      "original_link": "https://biz.chosun.com/topics/law_firm/2026/03/12/5JEJ4OVS3BELVCR77RTHQD35K4/?utm_source=naver&utm_medium=original&utm_campaign=biz",
-      "press": "조선비즈",
-      "pub_date": "2026-03-12T10:15:00",
-      "keyword": "한화오션",
-      "subsidiary": "한화",
-      "summary_lines": [
-        "한화오션(옛 대우조선해양) 퇴직자들이 재직 중 받은 경영성과급이 퇴직금에 반영되어야 한다며 소송을 냈으나 최종 패소했다",
-        "대법원은 한화오션의 경영성과급은 근로의 대가인 임금(賃金)이 아니라고 판단했다.",
-        "대법원 2부(주심 엄상필 대법관)는 12일 한화오션 재직자·퇴직자 972명이 회사를 상대로 제기한 퇴직금 청구 소송에서 원고 패소한 원심 판결을 확정했다."
-      ]
-    },
-    {
-      "title": "한화시스템, 방산·ICT 통합 신입사원 채용…세 자릿수 규모",
-      "link": "https://www.sentv.co.kr/article/view/sentv202603120055",
-      "original_link": "https://www.sentv.co.kr/article/view/sentv202603120055",
+      "title": "한화에어로스페이스 주가, 3월 12일 장중 1,452,000원 2.98% 상승",
+      "link": "https://www.joongangenews.com/news/articleView.html?idxno=501693",
+      "original_link": "https://www.joongangenews.com/news/articleView.html?idxno=501693",
       "press": "",
-      "pub_date": "2026-03-12T09:54:00",
-      "keyword": "한화시스템",
-      "subsidiary": "한화시스템",
-      "summary_lines": [
-        "한화시스템은 이번 채용에서 연구개발 직군, AI 빅데이터 기반 정보기술 시스템 개발 및 운영 직군, 경영지원 직군 등 다양한 분야에서 세자릿수 규모를 모집한다.",
-        "방산은 오는 26일까지, ICT는 25일까지 한화그룹 채용 홈페이지를 통해 지원받는다.",
-        "美, \"한국 등 16개국 '과잉생산' 무역법 301조 조사 착수\""
-      ]
-    },
-    {
-      "title": "[단독] 사외이사 임기 3년으로 늘리는 한화생명…ISS “주주 이익 침해로 반대”",
-      "link": "https://n.news.naver.com/mnews/article/011/0004598395?sid=101",
-      "original_link": "https://www.sedaily.com/article/20018317?ref=naver",
-      "press": "서울경제",
-      "pub_date": "2026-03-12T09:21:00",
+      "pub_date": "2026-03-12T10:32:00",
       "keyword": "한화에어로스페이스",
       "subsidiary": "한화",
       "summary_lines": [
-        "이 사외이사 임기를 2년에서 3년으로 늘리기로 하자 글로벌 의결권 자문사 ISS(Institutional Shareholder Services)가 주주 이익을 침해한다며 반대를 권고했다.",
-        "12일 금융계에 따르면 ISS는 기관투자가를 위한 의안 보고서를 통해 한화생명이 이달 24일 정기 주주총회 안건으로 상정한 이사 임기 변경 정관 변경안에 대해 반대(AGAINST)를 권고했다",
-        "ISS는 “사외이사 임기를 2년에서 3년으로 연장할 경우 이사들이 3년에 한 번만 재선임되기 때문에 주주에 대한 이사회 책임성을 감소시키고 주주 이익에 반한다”고 설명했다."
+        "[중앙이코노미뉴스 김영진] 12일 오전 10시 10분 기준, 네이버페이 증권에 따르면 한화에어로스페이스는 현재 1,452,000원에 거래되며 지난 종가 대비 상승세를 보이고 있다.",
+        "이는 지난 종가 1,410,000원보다 42,000원, 약 2.98% 상승한 수치이다.",
+        "시가는 1,430,000원으로 출발했고, 현재까지 1,424,000원의 저가와 1,455,000원의 고가 사이에서 가격 변동을 나타냈다"
       ]
     },
     {
