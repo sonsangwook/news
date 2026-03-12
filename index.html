@@ -283,7 +283,7 @@
     <div class="sidebar">
       <div class="sidebar-title">계열사</div>
       <div id="sidebarList"></div>
-      <div class="sidebar-title" style="margin-top:8px;">언론사</div>
+      <div class="sidebar-title" style="margin-top:40px;">언론사</div>
       <div id="pressList"></div>
     </div>
 
@@ -347,7 +347,7 @@
         const data = await res.json();
 
         allArticles = data.articles || [];
-        buildSidebar(allArticles, data.subsidiaries || [], data.press_list || []);
+        buildSidebar(allArticles, data.all_subsidiaries || data.subsidiaries || [], data.all_press || data.press_list || []);
         renderArticles();
         document.getElementById('metaText').textContent =
           formatDateLabel(dateStr) + ' | 생성: ' + (data.generated_at || '');
@@ -371,8 +371,8 @@
       const subList = document.getElementById('sidebarList');
       subList.innerHTML = '';
       addSidebarItem(subList, '전체', articles.length, true, () => filterBySub('전체'));
-      subsidiaries.filter(s => subCounts[s]).forEach(sub => {
-        addSidebarItem(subList, sub, subCounts[sub], false, () => filterBySub(sub));
+      subsidiaries.forEach(sub => {
+        addSidebarItem(subList, sub, subCounts[sub] || 0, false, () => filterBySub(sub));
       });
       if (subCounts['기타']) {
         addSidebarItem(subList, '기타', subCounts['기타'], false, () => filterBySub('기타'));
@@ -384,17 +384,11 @@
         if (a.press) pressCounts[a.press] = (pressCounts[a.press] || 0) + 1;
       });
 
-      // press_list 순서 사용, 없는 경우 카운트 내림차순
-      const orderedPress = pressList.length
-        ? pressList.filter(p => pressCounts[p])
-        : Object.keys(pressCounts).sort((a, b) => pressCounts[b] - pressCounts[a]);
-
       const pList = document.getElementById('pressList');
       pList.innerHTML = '';
-      const totalWithPress = articles.filter(a => a.press).length;
       addSidebarItem(pList, '전체', articles.length, true, () => filterByPress('전체'));
-      orderedPress.forEach(press => {
-        addSidebarItem(pList, press, pressCounts[press], false, () => filterByPress(press));
+      pressList.forEach(press => {
+        addSidebarItem(pList, press, pressCounts[press] || 0, false, () => filterByPress(press));
       });
     }
 
