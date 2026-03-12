@@ -281,12 +281,10 @@
   <div class="layout">
     <!-- 사이드바 -->
     <div class="sidebar">
-      <div class="sidebar-title">계열사 필터</div>
-      <div id="sidebarList">
-        <button class="sidebar-item active" onclick="filterBy('전체')">
-          전체 <span class="count" id="count-전체">0</span>
-        </button>
-      </div>
+      <div class="sidebar-title">계열사</div>
+      <div id="sidebarList"></div>
+      <div class="sidebar-title" style="margin-top:8px;">언론사</div>
+      <div id="pressList"></div>
     </div>
 
     <!-- 메인 -->
@@ -308,7 +306,8 @@
 
   <script>
     let allArticles = [];
-    let currentFilter = '전체';
+    let currentSubFilter = '전체';
+    let currentPressFilter = '전체';
 
     // 날짜 목록 로드
     async function loadDates() {
@@ -339,7 +338,8 @@
       if (!dateStr) return;
       document.getElementById('articleList').innerHTML =
         '<div class="state-box"><div class="icon">⏳</div>불러오는 중...</div>';
-      currentFilter = '전체';
+      currentSubFilter = '전체';
+      currentPressFilter = '전체';
 
       try {
         const res = await fetch('data/' + dateStr + '.json');
@@ -347,8 +347,8 @@
         const data = await res.json();
 
         allArticles = data.articles || [];
-        buildSidebar(allArticles, data.subsidiaries || []);
-        renderArticles('전체');
+        buildSidebar(allArticles, data.subsidiaries || [], data.press_list || []);
+        renderArticles();
         document.getElementById('metaText').textContent =
           formatDateLabel(dateStr) + ' | 생성: ' + (data.generated_at || '');
         document.getElementById('footer').textContent =
@@ -359,70 +359,90 @@
       }
     }
 
-    // 사이드바 생성
-    function buildSidebar(articles, subsidiaries) {
-      const counts = {};
+    // 사이드바 생성 (계열사 + 언론사)
+    function buildSidebar(articles, subsidiaries, pressList) {
+      // 계열사 카운트
+      const subCounts = {};
       articles.forEach(a => {
         const s = a.subsidiary || '기타';
-        counts[s] = (counts[s] || 0) + 1;
+        subCounts[s] = (subCounts[s] || 0) + 1;
       });
 
-      // 계열사 순서: config의 subsidiaries 순서 유지 (JSON에 포함된 순서 사용)
-      const orderedSubs = subsidiaries.filter(s => counts[s]);
-
-      const list = document.getElementById('sidebarList');
-      list.innerHTML = '';
-
-      // 전체 버튼
-      addSidebarItem(list, '전체', articles.length, true);
-
-      // 계열사별
-      orderedSubs.forEach(sub => {
-        addSidebarItem(list, sub, counts[sub], false);
+      const subList = document.getElementById('sidebarList');
+      subList.innerHTML = '';
+      addSidebarItem(subList, '전체', articles.length, true, () => filterBySub('전체'));
+      subsidiaries.filter(s => subCounts[s]).forEach(sub => {
+        addSidebarItem(subList, sub, subCounts[sub], false, () => filterBySub(sub));
       });
-
-      // 기타 (매칭 안 된 기사)
-      if (counts['기타']) {
-        addSidebarItem(list, '기타', counts['기타'], false);
+      if (subCounts['기타']) {
+        addSidebarItem(subList, '기타', subCounts['기타'], false, () => filterBySub('기타'));
       }
+
+      // 언론사 카운트
+      const pressCounts = {};
+      articles.forEach(a => {
+        if (a.press) pressCounts[a.press] = (pressCounts[a.press] || 0) + 1;
+      });
+
+      // press_list 순서 사용, 없는 경우 카운트 내림차순
+      const orderedPress = pressList.length
+        ? pressList.filter(p => pressCounts[p])
+        : Object.keys(pressCounts).sort((a, b) => pressCounts[b] - pressCounts[a]);
+
+      const pList = document.getElementById('pressList');
+      pList.innerHTML = '';
+      const totalWithPress = articles.filter(a => a.press).length;
+      addSidebarItem(pList, '전체', articles.length, true, () => filterByPress('전체'));
+      orderedPress.forEach(press => {
+        addSidebarItem(pList, press, pressCounts[press], false, () => filterByPress(press));
+      });
     }
 
-    function addSidebarItem(container, label, count, isActive) {
+    function addSidebarItem(container, label, count, isActive, onClick) {
       const btn = document.createElement('button');
       btn.className = 'sidebar-item' + (isActive ? ' active' : '');
-      btn.innerHTML = label + '<span class="count">' + count + '</span>';
-      btn.onclick = () => filterBy(label);
+      btn.dataset.value = label;
+      btn.innerHTML = escHtml(label) + '<span class="count">' + count + '</span>';
+      btn.onclick = onClick;
       container.appendChild(btn);
     }
 
-    // 계열사 필터 적용
-    function filterBy(sub) {
-      currentFilter = sub;
-
-      // 사이드바 활성화
-      document.querySelectorAll('.sidebar-item').forEach(btn => {
-        btn.classList.toggle('active', btn.textContent.trim().startsWith(sub));
+    // 계열사 필터
+    function filterBySub(sub) {
+      currentSubFilter = sub;
+      document.querySelectorAll('#sidebarList .sidebar-item').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.value === sub);
       });
-
-      renderArticles(sub);
+      renderArticles();
     }
 
-    // 기사 렌더링
-    function renderArticles(sub) {
-      const filtered = sub === '전체'
-        ? allArticles
-        : allArticles.filter(a => (a.subsidiary || '기타') === sub);
+    // 언론사 필터
+    function filterByPress(press) {
+      currentPressFilter = press;
+      document.querySelectorAll('#pressList .sidebar-item').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.value === press);
+      });
+      renderArticles();
+    }
+
+    // 기사 렌더링 (계열사 + 언론사 필터 동시 적용)
+    function renderArticles() {
+      const filtered = allArticles.filter(a => {
+        const subOk = currentSubFilter === '전체' || (a.subsidiary || '기타') === currentSubFilter;
+        const pressOk = currentPressFilter === '전체' || (a.press || '') === currentPressFilter;
+        return subOk && pressOk;
+      });
 
       const list = document.getElementById('articleList');
       const badge = document.getElementById('visibleCount');
 
       if (filtered.length === 0) {
-        list.innerHTML = '<div class="state-box"><div class="icon">🔍</div>해당 계열사 뉴스가 없습니다.</div>';
+        list.innerHTML = '<div class="state-box"><div class="icon">🔍</div>조건에 맞는 기사가 없습니다.</div>';
         badge.style.display = 'none';
         return;
       }
 
-      badge.textContent = 'TOP ' + filtered.length;
+      badge.textContent = filtered.length + '건';
       badge.style.display = '';
 
       list.innerHTML = filtered.map((a, i) => `

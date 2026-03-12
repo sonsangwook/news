@@ -1,12 +1,33 @@
 {
   "date": "2026-03-12",
-  "generated_at": "2026-03-12 12:25",
-  "article_count": 10,
+  "generated_at": "2026-03-12 12:41",
+  "article_count": 8,
   "subsidiaries": [
-    "한화",
-    "한화시스템"
+    "한화시스템",
+    "한화"
+  ],
+  "press_list": [
+    "뉴시스",
+    "서울경제",
+    "이데일리",
+    "조선비즈",
+    "조선일보"
   ],
   "articles": [
+    {
+      "title": "한화시스템, 2026년 상반기 신입사원 정기채용 실시",
+      "link": "https://www.koreaittimes.com/news/articleView.html?idxno=151761",
+      "original_link": "https://www.koreaittimes.com/news/articleView.html?idxno=151761",
+      "press": "",
+      "pub_date": "2026-03-12T11:56:00",
+      "keyword": "한화시스템",
+      "subsidiary": "한화시스템",
+      "summary_lines": [
+        "방산·ICT 통합 세 자릿수 규모… 핵심 R&D 인력 및 글로벌 인재 확보",
+        "한화시스템이 미래 방산 및 첨단 기술 시장을 선도할 인재 확보를 위해 ‘2026년 상반기 신입사원 정기채용’에 나섰다.",
+        "한화시스템은 이번 채용을 통해 ▲회사의 성장을 견인할 수 있는 연구개발(R&D) 직군 ▲AI와 빅데이터 기반의 IT시스템 개발 및 운영 직군 ▲효율적인 사업 운영을 지원할 경영지원 직군 등 다양한 분야에서 세 자릿 수 규모의 우수 인재를 모집한다."
+      ]
+    },
     {
       "title": "대법 \"한화오션 성과급, 임금 아냐\"…'퇴직금 청구' 사측 승소",
       "link": "https://n.news.naver.com/mnews/article/003/0013817540?sid=102",
@@ -19,6 +40,20 @@
         "法 \"사업 이익 분배일 뿐 임금 아니다\" 판단",
         "\"성과급도 임금\" 소송 계속…대법, 결론 엇갈려",
         "대법원은 \"한화오션 경영성과급의 성과지표는 영업이익, 경상이익 등 재무지표를 성과지표로 한다\"며 \"목표 대비 달성도에 따라 지급률이 차등 결정되는 구조임을 고려하더라도, 근로 제공과의 직접 또는 밀접한 관련성이 있다고 보기 어렵다\"고 판시했다."
+      ]
+    },
+    {
+      "title": "한화시스템, 미래 첨단 인재 확보 나서…상반기 세 자릿수 채용",
+      "link": "http://www.whitepaper.co.kr/news/articleView.html?idxno=259388",
+      "original_link": "http://www.whitepaper.co.kr/news/articleView.html?idxno=259388",
+      "press": "",
+      "pub_date": "2026-03-12T11:20:00",
+      "keyword": "한화시스템",
+      "subsidiary": "한화시스템",
+      "summary_lines": [
+        "지역 인재 채용 확대해 균형발전 기여",
+        "한화시스템은 미래 방산 및 첨단 기술 경쟁력 강화를 위해 2026년 상반기 신입사원 정기 채용을 실시한다고 12일 밝혔다.",
+        "이번 채용은 연구개발(R&D) 직군을 비롯해 인공지능(AI)·빅데이터 기반 정보기술(IT) 시스템 개발 및 운영, 경영지원 등 다양한 분야에서 세자릿수 규모로 진행된다"
       ]
     },
     {
@@ -50,17 +85,17 @@
       ]
     },
     {
-      "title": "한화에어로스페이스 주가, 3월 12일 장중 1,452,000원 2.98% 상승",
-      "link": "https://www.joongangenews.com/news/articleView.html?idxno=501693",
-      "original_link": "https://www.joongangenews.com/news/articleView.html?idxno=501693",
+      "title": "한화시스템, 방산·ICT 통합 신입사원 채용…세 자릿수 규모",
+      "link": "https://www.sentv.co.kr/article/view/sentv202603120055",
+      "original_link": "https://www.sentv.co.kr/article/view/sentv202603120055",
       "press": "",
-      "pub_date": "2026-03-12T10:32:00",
-      "keyword": "한화에어로스페이스",
-      "subsidiary": "한화",
+      "pub_date": "2026-03-12T09:54:00",
+      "keyword": "한화시스템",
+      "subsidiary": "한화시스템",
       "summary_lines": [
-        "[중앙이코노미뉴스 김영진] 12일 오전 10시 10분 기준, 네이버페이 증권에 따르면 한화에어로스페이스는 현재 1,452,000원에 거래되며 지난 종가 대비 상승세를 보이고 있다.",
-        "이는 지난 종가 1,410,000원보다 42,000원, 약 2.98% 상승한 수치이다.",
-        "시가는 1,430,000원으로 출발했고, 현재까지 1,424,000원의 저가와 1,455,000원의 고가 사이에서 가격 변동을 나타냈다"
+        "한화시스템은 이번 채용에서 연구개발 직군, AI 빅데이터 기반 정보기술 시스템 개발 및 운영 직군, 경영지원 직군 등 다양한 분야에서 세자릿수 규모를 모집한다.",
+        "방산은 오는 26일까지, ICT는 25일까지 한화그룹 채용 홈페이지를 통해 지원받는다.",
+        "美, \"한국 등 16개국 '과잉생산' 무역법 301조 조사 착수\""
       ]
     },
     {
@@ -78,73 +113,17 @@
       ]
     },
     {
-      "title": "한화시스템, 방산·ICT 통합 신입사원 채용…세 자릿수 규모",
-      "link": "https://www.sentv.co.kr/article/view/sentv202603120055",
-      "original_link": "https://www.sentv.co.kr/article/view/sentv202603120055",
-      "press": "",
-      "pub_date": "2026-03-12T09:54:00",
-      "keyword": "한화시스템",
-      "subsidiary": "한화시스템",
-      "summary_lines": [
-        "한화시스템은 이번 채용에서 연구개발 직군, AI 빅데이터 기반 정보기술 시스템 개발 및 운영 직군, 경영지원 직군 등 다양한 분야에서 세자릿수 규모를 모집한다.",
-        "방산은 오는 26일까지, ICT는 25일까지 한화그룹 채용 홈페이지를 통해 지원받는다.",
-        "美, \"한국 등 16개국 '과잉생산' 무역법 301조 조사 착수\""
-      ]
-    },
-    {
-      "title": "한화, 국내 최초 벨기에 방산전시회 참가",
-      "link": "https://www.knnews.co.kr/news/articleView.php?idxno=1483963",
-      "original_link": "https://www.knnews.co.kr/news/articleView.php?idxno=1483963",
-      "press": "",
-      "pub_date": "2026-03-12T09:40:00",
-      "keyword": "한화에어로스페이스",
+      "title": "한화, 벨기에 방산 전시회 국내 최초 참가 / 통합 방공 솔루션으로 서유...",
+      "link": "http://topclass.chosun.com/news/articleView.html?idxno=35962",
+      "original_link": "http://topclass.chosun.com/news/articleView.html?idxno=35962",
+      "press": "조선일보",
+      "pub_date": "2026-03-11T18:50:00",
+      "keyword": "한화엔진",
       "subsidiary": "한화",
       "summary_lines": [
-        "한화에어로스페이스와 한화시스템이 벨기에 브뤼셀에서 처음 열리는 방산전시회인 ‘BEDEX 2026(Brussels European Defence Exhibition)에 국내 기업 최초로 참가한다고 11일 밝혔다.",
-        "12~14일 열리는 이번 전시회에는 라인메탈, KNDS, 레이시온 등 유럽뿐 아니라 주요 글로벌 방산업체들이 대거 참석한다.",
-        "벨기에 브뤼셀에서 열리는 ‘BEDEX 2026(Brussels European Defence Exhibition)’ 한화 부스 조감도./한화/"
-      ]
-    },
-    {
-      "title": "[ETF 매치업] 다시 질주하는 K방산…한화 선두 흔드는 삼성·미래",
-      "link": "https://dealsite.co.kr/articles/158189",
-      "original_link": "https://dealsite.co.kr/articles/158189",
-      "press": "",
-      "pub_date": "2026-03-12T08:08:00",
-      "keyword": "한화에어로스페이스",
-      "subsidiary": "한화",
-      "summary_lines": [
-        "한화운용 자산 1.7조 선두…한 달 간 삼성 1571억, 미래 792억 자금 몰려 변화 시작",
-        "11일 한국거래소에 따르면 국내 상장된 방산 기업에 투자하는 ETF는 총 4종이다",
-        "이 하우스는 2023년 업계 최초로 'PLUS K방산'을 출시했다"
-      ]
-    },
-    {
-      "title": "[대한민국 굿잡스] 한화시스템, 2026 상반기 신입 공채 돌입…세 자릿수...",
-      "link": "http://www.newslock.co.kr/news/articleView.html?idxno=126749",
-      "original_link": "http://www.newslock.co.kr/news/articleView.html?idxno=126749",
-      "press": "",
-      "pub_date": "2026-03-12T10:02:00",
-      "keyword": "한화시스템",
-      "subsidiary": "한화시스템",
-      "summary_lines": [
-        "일확천금?! 금 직거래 사기 주의보",
-        "또 한탕한 오비, 다음번엔 기필코",
-        "장원재 메리츠증권 사장의 추락하는 신뢰도"
-      ]
-    },
-    {
-      "title": "한화, 루마니아서 ‘방산 허브’ 전략 공개…“현지공장은 첫 단추”",
-      "link": "https://n.news.naver.com/mnews/article/029/0003015369?sid=101",
-      "original_link": "https://www.dt.co.kr/article/12051125?ref=naver",
-      "press": "디지털타임스",
-      "pub_date": "2026-03-12T11:24:00",
-      "keyword": "한화에어로스페이스",
-      "subsidiary": "한화",
-      "summary_lines": [
-        "“지속가능한 방산 생태계 조성 목표”",
-        "임경욱 한화에어로스페이스 루마니아 법인장이 지난 10일(현지시간) 루마니아 부쿠레슈티서 열린 루마니아 국제 안보·방산 콘퍼런스인 ‘Defense Romania Security Dialogue 2026’에 참석해 방산 전략을 발표하고 있다",
-        "그는 “한화에어로스페이스는 루마니아에 강력한 의지를 갖고 있다”며 “K9 자주포 사업과 듬보비차주에 건설 중인 공장은 그 첫 단계”라고 말했다."
+        "최근 불안한 국제 정세로 방산 업종의 강세가 이어지는 가운데, 한화에어로스페이스와 한화시스템이 벨기에 브뤼셀에서 열리는 방산 전시회 ‘BEDEX 2026(Brussels European Defence Exhibition)’에 참가한다",
+        "3월 12일부터 14일까지 열리는 이 전시회는 벨기에에서 처음 개최되는 방산 행사로, 라인메탈·KNDS·레이시온 등 유럽과 글로벌 주요 방산 기업들이 대거 참여할 예정이다",
+        "12일부터 벨기에 브뤼셀에서 열리는 방산전시회 ‘BEDEX 2026’ 한화 부스 조감도. 한화에어로스페이스 제공"
       ]
     }
   ]
