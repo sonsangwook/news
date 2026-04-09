@@ -1,0 +1,135 @@
+{
+  "date": "2026-04-09",
+  "generated_at": "2026-04-09 12:08",
+  "article_count": 6,
+  "subsidiaries": [
+    "한화",
+    "한화시스템"
+  ],
+  "press_list": [
+    "한국일보"
+  ],
+  "all_subsidiaries": [
+    "한화에어로스페이스",
+    "한화시스템",
+    "한화오션",
+    "한화디펜스",
+    "한화엔진",
+    "한화솔루션",
+    "한화토탈에너지스",
+    "한화에너지",
+    "한화첨단소재",
+    "여천NCC",
+    "한화생명",
+    "한화투자증권",
+    "한화저축은행",
+    "한화건설",
+    "한화갤러리아",
+    "한화호텔앤드리조트",
+    "한화63시티",
+    "한화",
+    "한화로보틱스",
+    "한화에비에이션",
+    "한화비전",
+    "한화S&C",
+    "한화임팩트"
+  ],
+  "all_press": [
+    "중앙일보",
+    "조선일보",
+    "한국경제",
+    "매일경제",
+    "연합뉴스",
+    "동아일보",
+    "서울경제",
+    "이데일리",
+    "뉴스1",
+    "머니투데이",
+    "파이낸셜뉴스",
+    "헤럴드경제"
+  ],
+  "articles": [
+    {
+      "title": "금감원, 한화솔루션 2.4조 유상증자에 제동… 증권신고서 정정 요구",
+      "link": "https://n.news.naver.com/mnews/article/469/0000924613?sid=101",
+      "original_link": "https://www.hankookilbo.com/news/article/A2026040916210001730?did=NA",
+      "press": "한국일보",
+      "pub_date": "2026-04-09T20:30:00",
+      "keyword": "한화에어로스페이스",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "금융당국이 2조4,000억 원 규모에 달하는 한화솔루션의 유상증자 계획에 제동을 걸었다",
+        "지주회사인 한화가 배정받은 주식보다 20% 더 인수하겠다고 밝히는 등 주주 달래기에 나섰지만, 금융감독원은 이같은 계획이 부족하다고 판단한 것으로 해석된다.",
+        "한화솔루션은 지난달 26일 오후 2조4,000억 원 규모의 유상증자 계획을 발표한 바 있다"
+      ]
+    },
+    {
+      "title": "한화, 한화솔루션 유증에 8400억 투입 승부수",
+      "link": "https://www.sentv.co.kr/article/view/sentv202604090102",
+      "original_link": "https://www.sentv.co.kr/article/view/sentv202604090102",
+      "press": "",
+      "pub_date": "2026-04-09T18:10:00",
+      "keyword": "한화솔루션",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "한화그룹의 지주사 격인 ㈜한화가 계열사 한화솔루션의 대규모 유상증자에 참여해 8400억 원이 넘는 자금을 투입하기로 했습니다",
+        "배정 물량의 100%를 인수하는 것은 물론, 법적 최대 한도인 20% 초과 청약까지 진행해 총 2534만 주를 확보한다는 계획입니다.",
+        "앞서 한화솔루션은 지난달 재무 구조 개선과 미래 성장 동력 확보를 위해 약 2조4000억 원 규모의 대규모 유상증자 계획을 발표한 바 있습니다."
+      ]
+    },
+    {
+      "title": "한화에어로, 인드라와 맞손...'통합 솔루션'으로 중남미 방산 공략 '속도...",
+      "link": "https://www.joongangenews.com/news/articleView.html?idxno=510340",
+      "original_link": "https://www.joongangenews.com/news/articleView.html?idxno=510340",
+      "press": "",
+      "pub_date": "2026-04-09T16:36:00",
+      "keyword": "한화시스템",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "FIDAE 2026에서 스페인 인드라그룹과 칠레 장갑차 사업 협력 협약",
+        "플랫폼과 임무체계를 결합한 통합 솔루션을 앞세워 수출 경쟁력 확대를 추진하는 전략이다.",
+        "한화에어로스페이스는 스페인 방산 기업 인드라그룹과 칠레 장갑차 사업 협력을 위한 업무협약(MOU)을 체결했다고 9일 밝혔다"
+      ]
+    },
+    {
+      "title": "[코스피·코스닥,한화 HD한국조선해양 GS건설 삼부토건 엠앤씨솔루션 J...",
+      "link": "https://www.public25.com/news/articleView.html?idxno=43687",
+      "original_link": "https://www.public25.com/news/articleView.html?idxno=43687",
+      "press": "",
+      "pub_date": "2026-04-09T08:30:00",
+      "keyword": "한화솔루션",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "퍼블릭타임스=[코스피·코스닥,한화 HD한국조선해양 GS건설 삼부토건 엠앤씨솔루션 JW중외제약 케이씨에스 동성화인텍 피노등 8일 주요공시] ▲한화(000880) : 한화솔루션 유상증자에 120% 초과 청약으로..."
+      ]
+    },
+    {
+      "title": "MUAV 국산 1호기 출고…대한항공·LIG D&A·한화시스템 참여",
+      "link": "https://www.lcnews.co.kr/news/articleView.html?idxno=200454",
+      "original_link": "https://www.lcnews.co.kr/news/articleView.html?idxno=200454",
+      "press": "",
+      "pub_date": "2026-04-08T18:22:00",
+      "keyword": "한화엔진",
+      "subsidiary": "한화시스템",
+      "summary_lines": [
+        "(D&A)·한화시스템 공동 주최로 열린 출고식은 민관군 주요 관계자 300여명이 참석한 가운데 진행됐다",
+        "이번에 출고한 1호기는 길이 13m, 폭 26m에 1200마력 터보프롭 엔진을 장착했다",
+        "이 무인기는 고도 10km 이상의 상공을..."
+      ]
+    },
+    {
+      "title": "한화 5개 계열사, 사외이사 안건 찬성률 ‘100%’…거수기 그쳐",
+      "link": "https://www.ceoscoredaily.com/page/view/2026040810552019908",
+      "original_link": "https://www.ceoscoredaily.com/page/view/2026040810552019908",
+      "press": "",
+      "pub_date": "2026-04-08T17:42:00",
+      "keyword": "한화솔루션",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "이사회 소속 사외이사 안건 찬성률 2년 연속 100%",
+        "한화오션, 사업·경영 안건 비중 69.7%로 가장 높아",
+        "지난해 한화그룹의 지주사를 포함한 주요 계열사의 이사회 안건 찬성률이 100%에 달한 것으로 나타났다"
+      ]
+    }
+  ]
+}
