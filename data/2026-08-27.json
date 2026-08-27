@@ -1,0 +1,124 @@
+{
+  "date": "2026-08-27",
+  "generated_at": "2026-08-27 21:04",
+  "article_count": 5,
+  "subsidiaries": [
+    "한화"
+  ],
+  "press_list": [
+    "디지털타임스",
+    "조선일보",
+    "주간동아"
+  ],
+  "all_subsidiaries": [
+    "한화에어로스페이스",
+    "한화시스템",
+    "한화오션",
+    "한화디펜스",
+    "한화엔진",
+    "한화솔루션",
+    "한화토탈에너지스",
+    "한화에너지",
+    "한화첨단소재",
+    "여천NCC",
+    "한화생명",
+    "한화투자증권",
+    "한화저축은행",
+    "한화건설",
+    "한화갤러리아",
+    "한화호텔앤드리조트",
+    "한화63시티",
+    "한화",
+    "한화로보틱스",
+    "한화에비에이션",
+    "한화비전",
+    "한화S&C",
+    "한화임팩트"
+  ],
+  "all_press": [
+    "중앙일보",
+    "조선일보",
+    "한국경제",
+    "매일경제",
+    "연합뉴스",
+    "동아일보",
+    "서울경제",
+    "이데일리",
+    "뉴스1",
+    "머니투데이",
+    "파이낸셜뉴스",
+    "헤럴드경제"
+  ],
+  "articles": [
+    {
+      "title": "인적분할 한화·카카오, 주가 엇갈린 까닭은?",
+      "link": "https://n.news.naver.com/mnews/article/023/0003995332?sid=101",
+      "original_link": "https://www.chosun.com/economy/stock-finance/2026/08/28/GYLOFAKZERGNLOKPBEBMCSCB6A/?utm_source=naver&utm_medium=referral&utm_campaign=naver-news",
+      "press": "조선일보",
+      "pub_date": "2026-08-28T00:36:00",
+      "keyword": "한화에어로스페이스",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "지난 25일 한화는 인적분할을 마치고 거래를 재개하자 주가가 뛰었다",
+        "25일 17.4% 급등을 포함해 27일까지 사흘간 한화 주가는 29.4% 올랐다",
+        "그러나 카카오는 21일 분할 계획을 내놓자 주가가 7.5% 내리는 등 27일까지 7% 빠졌다."
+      ]
+    },
+    {
+      "title": "[이슈플러스] “분식회계 성과급, 통상 비용 아냐”…한화오션 패소",
+      "link": "https://www.sentv.co.kr/article/view/sentv202608270123",
+      "original_link": "https://www.sentv.co.kr/article/view/sentv202608270123",
+      "press": "",
+      "pub_date": "2026-08-27T18:06:00",
+      "keyword": "한화오션",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "[이슈플러스] “분식회계 성과급, 통상 비용 아냐”…한화오션 패소",
+        "[이슈플러스] “분식회계 성과급, 통상 비용 아냐”…한화오션 패소",
+        "당시 분식회계로 부풀린 실적을 근거로 지급한 성과급 108억 원. 이 돈을 세금 계산에서 비용으로 뺄 수 있느냐가 쟁점이었습니다"
+      ]
+    },
+    {
+      "title": "한화, 美 13억달러 탄약공장 다지기… 판로 개척 속도",
+      "link": "https://n.news.naver.com/mnews/article/029/0003044696?sid=101",
+      "original_link": "https://www.dt.co.kr/article/12080600?ref=naver",
+      "press": "디지털타임스",
+      "pub_date": "2026-08-27T15:10:00",
+      "keyword": "한화에어로스페이스",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "한화가 13억달러(약 1조9000억원) 규모의 탄약 생산시설 건설을 추진 중인 미국 아칸소주에서 현지 공급망 구축에 속도를 내고 있다.",
+        "현지 방산업체들과 접점을 넓히며 탄약 생산에 필요한 소재·부품부터 엔지니어링까지 협력 기반을 다지는 데 주력하고 있다.",
+        "한화는 해당 시설에 200만달러(27억6000만원) 이상을 투자하고 3년간 임차해 K9 계열 자주포의 통합과 시험에 활용할 계획이다"
+      ]
+    },
+    {
+      "title": "한화, 美 방산 자회사에 4100억 투입… 미국시장 공략 강화",
+      "link": "https://n.news.naver.com/mnews/article/037/0000038735?sid=101",
+      "original_link": "https://weekly.donga.com/3/all/11/6361930/1",
+      "press": "주간동아",
+      "pub_date": "2026-08-27T07:02:00",
+      "keyword": "한화오션",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "한화에어로스페이스가 개발한 K9 차륜형 자주포. 한화에어로스페이스 제공",
+        "출자 규모는 최대 2억9900만 달러(약 4140억 원)다.",
+        "한화에 따르면 한화에어로스페이스가 지분 100%를 보유한 한화디펜스USA에 1억4900만 달러(약 2060억 원)를 출자한다"
+      ]
+    },
+    {
+      "title": "[노트북을 열며] 한화의 '아메리칸 드림'…9년 만에 K9이 첫 문 열었다",
+      "link": "https://www.goodmorningcc.com/news/articleView.html?idxno=451284",
+      "original_link": "https://www.goodmorningcc.com/news/articleView.html?idxno=451284",
+      "press": "",
+      "pub_date": "2026-08-27T02:02:00",
+      "keyword": "한화오션",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "한화에어로스페이스의 미국 자회사 한화디펜스USA가 미 육군과 K9 차륜형 자주포(K9 Mobile Howitzer·K9MH) 시제품 6문 공급 계약을 지난 19일 체결했다",
+        "대규모 양산 계약은 아니지만 한화가 지난 9년 동안 미국 시장의 문을 두드린 끝에 거둔 첫 실질적 성과라는 점에서 의미가 크다.",
+        "2024년 한화시스템과 한화오션이 약 1억 달러를 투자해 미국 필라델피아의 필리조선소를 인수했다"
+      ]
+    }
+  ]
+}
