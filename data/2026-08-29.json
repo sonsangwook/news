@@ -1,0 +1,121 @@
+{
+  "date": "2026-08-29",
+  "generated_at": "2026-08-29 15:42",
+  "article_count": 5,
+  "subsidiaries": [
+    "한화"
+  ],
+  "press_list": [
+    "아시아경제",
+    "이데일리"
+  ],
+  "all_subsidiaries": [
+    "한화에어로스페이스",
+    "한화시스템",
+    "한화오션",
+    "한화디펜스",
+    "한화엔진",
+    "한화솔루션",
+    "한화토탈에너지스",
+    "한화에너지",
+    "한화첨단소재",
+    "여천NCC",
+    "한화생명",
+    "한화투자증권",
+    "한화저축은행",
+    "한화건설",
+    "한화갤러리아",
+    "한화호텔앤드리조트",
+    "한화63시티",
+    "한화",
+    "한화로보틱스",
+    "한화에비에이션",
+    "한화비전",
+    "한화S&C",
+    "한화임팩트"
+  ],
+  "all_press": [
+    "중앙일보",
+    "조선일보",
+    "한국경제",
+    "매일경제",
+    "연합뉴스",
+    "동아일보",
+    "서울경제",
+    "이데일리",
+    "뉴스1",
+    "머니투데이",
+    "파이낸셜뉴스",
+    "헤럴드경제"
+  ],
+  "articles": [
+    {
+      "title": "미래에셋증권, 8월 마지막주 한화 등 9종목 매수 추천",
+      "link": "https://www.bigtanews.co.kr/article/view/big202608290006",
+      "original_link": "https://www.bigtanews.co.kr/article/view/big202608290006",
+      "press": "",
+      "pub_date": "2026-08-29T19:48:00",
+      "keyword": "한화에너지",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "한화(000880) 인적분할로 비전·갤러리아·호텔앤드리조트·모멘텀·로보틱스를 신설법인으로 이관. 존속법인은 방산·조선·에너지·금융 중심으로 사업구조가 단순화되며 지주회사 할인 축소 기대. 2분기..."
+      ]
+    },
+    {
+      "title": "한화 4거래일 34.10% 상승, 방산 지주 평가론",
+      "link": "https://www.tokenpost.kr/news/market/400346",
+      "original_link": "https://www.tokenpost.kr/news/market/400346",
+      "press": "",
+      "pub_date": "2026-08-29T19:10:00",
+      "keyword": "한화에어로스페이스",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "한화가 인적분할 후 거래를 재개한 뒤 4거래일 연속 상승해 28일 13만4900원에 마감했다",
+        "28일 종가는 거래 재개 첫날 시초가보다 34.10% 높아졌다.",
+        "28일 한국거래소에 따르면, 한화는 전 거래일보다 3.61% 오른 13만4900원에 거래를 마쳤다"
+      ]
+    },
+    {
+      "title": "방산·조선 날개 단 한화…주가 언제까지 오를까",
+      "link": "https://n.news.naver.com/mnews/article/277/0005808981?sid=101",
+      "original_link": "https://view.asiae.co.kr/article/2026082816235150061",
+      "press": "아시아경제",
+      "pub_date": "2026-08-29T16:54:00",
+      "keyword": "한화에어로스페이스",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "한국거래소에 따르면 한화는 지난 28일 3.61% 오른 13만4900원에 거래를 마쳤다",
+        "재상장 첫날인 25일 시초가 10만 600원으로 출발한 한화는 17.4% 급등했다",
+        "이후로도 상승세가 지속되며 시초가 대비 34.10% 올랐다."
+      ]
+    },
+    {
+      "title": "한화그룹, 방산·조선 호조…“솔루션은 추가 자구계획 필요”",
+      "link": "https://n.news.naver.com/mnews/article/018/0006359796?sid=101",
+      "original_link": "https://www.edaily.co.kr/News/Read?newsId=04231206645551912&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=original_article",
+      "press": "이데일리",
+      "pub_date": "2026-08-28T16:58:00",
+      "keyword": "한화에어로스페이스",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "다만 한화솔루션은 재무부담이 여전히 높은 만큼 유의미한 추가 자구계획과 이익창출력 개선이 필요하다는 진단이다.",
+        "올해 상반기 연결 기준 매출액은 8조5000억원, 영업이익은 4000억원으로 집계됐다",
+        "지난해 같은 기간 매출액 6조2000억원, 영업이익 1000억원과 비교해 외형과 수익성이 모두 확대됐다."
+      ]
+    },
+    {
+      "title": "한화오션, 7600t 세종대왕함 민간정비 첫 위탁 맡는다",
+      "link": "http://www.whitepaper.co.kr/news/articleView.html?idxno=266128",
+      "original_link": "http://www.whitepaper.co.kr/news/articleView.html?idxno=266128",
+      "press": "",
+      "pub_date": "2026-08-28T15:52:00",
+      "keyword": "한화오션",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "해군 이지스구축함 첫 외주 정비, 9월부터 약 6개월간 정비 예정",
+        "해군 수상함의 전면 보수 작업을 민간 조선업체에 맡기는 것은 이번이 처음 있는 일이다.",
+        "해군은 지난 27일 7600톤급인 세종대왕함의 성능 유지와 안정적인 전력 운용을 위해 한화오션과 MRO 계약을 체결했다고 28일 밝혔다"
+      ]
+    }
+  ]
+}
