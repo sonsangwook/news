@@ -1,0 +1,122 @@
+{
+  "date": "2026-09-13",
+  "generated_at": "2026-09-13 14:57",
+  "article_count": 5,
+  "subsidiaries": [
+    "한화"
+  ],
+  "press_list": [
+    "이데일리"
+  ],
+  "all_subsidiaries": [
+    "한화에어로스페이스",
+    "한화시스템",
+    "한화오션",
+    "한화디펜스",
+    "한화엔진",
+    "한화솔루션",
+    "한화토탈에너지스",
+    "한화에너지",
+    "한화첨단소재",
+    "여천NCC",
+    "한화생명",
+    "한화투자증권",
+    "한화저축은행",
+    "한화건설",
+    "한화갤러리아",
+    "한화호텔앤드리조트",
+    "한화63시티",
+    "한화",
+    "한화로보틱스",
+    "한화에비에이션",
+    "한화비전",
+    "한화S&C",
+    "한화임팩트"
+  ],
+  "all_press": [
+    "중앙일보",
+    "조선일보",
+    "한국경제",
+    "매일경제",
+    "연합뉴스",
+    "동아일보",
+    "서울경제",
+    "이데일리",
+    "뉴스1",
+    "머니투데이",
+    "파이낸셜뉴스",
+    "헤럴드경제"
+  ],
+  "articles": [
+    {
+      "title": "신상열 농심 부사장 13일 결혼⋯서경배 아모레퍼시픽 회장ㆍ김동관 한화 부회장 등 참석",
+      "link": "https://www.etoday.co.kr/news/view/2624892",
+      "original_link": "https://www.etoday.co.kr/news/view/2624892",
+      "press": "",
+      "pub_date": "2026-09-13T19:34:00",
+      "keyword": "김동관",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "당시 신동원 회장은 신 부사장의 사내이사 선임 배경에 대해 \"특별한 배경이 있기보다는 젊은 나이지만 굉장히 회사에 애정을 갖고 열심히 노력하는 거로 봐서 충분히 자격이 있다는 생각이 들었다\"고 말했다.",
+        "한화 김승연 회장, 상반기 보수 115.8억…김동관 수석부회장 35억",
+        "\"서울 세계 3대 도시 도약에 86조 쏟는다\"…오세훈표 'G3 서울플랜' 공개 [종합]"
+      ]
+    },
+    {
+      "title": "한화오션, 60MW급 부유식 데이터센터 첫선… 해상 AI 인프라 공략",
+      "link": "https://www.viva100.com/article/20260913500707",
+      "original_link": "https://www.viva100.com/article/20260913500707",
+      "press": "",
+      "pub_date": "2026-09-13T17:18:00",
+      "keyword": "한화오션",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "한화오션, 60MW급 부유식 데이터센터 첫선… 해상 AI 인프라 공략",
+        "가스텍 2026서 글로벌 첫 공개… 해수 냉각·모듈화 설계 적용",
+        "한화오션이 자체 개발한 60MW급 부유식 데이터센터(FDC)를 앞세워 글로벌 데이터센터 시장 공략에 나선다"
+      ]
+    },
+    {
+      "title": "위성이 표적 찾고 AI가 분석…K9·천무까지 잇는 한화 ‘우주전’",
+      "link": "https://n.news.naver.com/mnews/article/018/0006368389?sid=100",
+      "original_link": "https://www.edaily.co.kr/News/Read?newsId=01502246645579792&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=original_article",
+      "press": "이데일리",
+      "pub_date": "2026-09-13T11:26:00",
+      "keyword": "한화시스템",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "폴란드 MSPO서 ‘우주 AI 솔루션’ 첫 해외 공개",
+        "실제 위성영상 실시간 분석…EO·IR·SAR 데이터 융합",
+        "한화시스템은 폴란드 키엘체에서 열린 국제방산전시회 ‘MSPO 2026’에서 우주 AI 솔루션 론칭 행사를 열고 실제 운용 중인 위성이 촬영한 동유럽 지역 영상을 AI가 실시간 분석하는 모습을 시연했다"
+      ]
+    },
+    {
+      "title": "레이저·요격드론부터 L-SAM까지…한화에어로, 유럽 방공 '빈틈' 공략",
+      "link": "https://n.news.naver.com/mnews/article/018/0006368348?sid=100",
+      "original_link": "https://www.edaily.co.kr/News/Read?newsId=01357926645579792&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=original_article",
+      "press": "이데일리",
+      "pub_date": "2026-09-13T10:10:00",
+      "keyword": "한화에어로스페이스",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "폴란드 MSPO 2026서 다층방공망 제시",
+        "폴란드 군비청은 올해 1월 노르웨이 콩스버그·자국 국영 방산그룹 PGZ와 약 150억 즈워티(약 5조3944억 원) 규모의 대드론 체계 ‘산(SAN)’ 계약을 체결했다",
+        "한화 관계자는 “K9자주포와 천무 다연장 로켓 사업을 통해 입증한 신뢰는 한화의 가장 큰 자산”이라면서 “맞춤형 솔루션을 지속적으로 선보이며 나토 동맹국의 자주국방과 방산 생태계 발전에 적극 기여할 것”이라고 말했다."
+      ]
+    },
+    {
+      "title": "이준석 “나라면 한화 주식에 몰빵…동관이형 재벌 중 제일 똑똑”",
+      "link": "https://n.news.naver.com/mnews/article/018/0006368181?sid=102",
+      "original_link": "https://www.edaily.co.kr/News/Read?newsId=02420646645579464&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=original_article",
+      "press": "이데일리",
+      "pub_date": "2026-09-12T16:58:00",
+      "keyword": "한화에어로스페이스",
+      "subsidiary": "한화",
+      "summary_lines": [
+        "한화 오너3세 김동관 부회장과 하버드대 선후배",
+        "“술 마시고 게임하러 다녀, 매너 좋고 영어 잘해”",
+        "그러면서 자신이라면 한화 주식에 투자하겠다며 한화에어로스페이스를 구체적으로 언급했다."
+      ]
+    }
+  ]
+}
